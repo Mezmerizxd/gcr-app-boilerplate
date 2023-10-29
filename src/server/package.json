@@ -1,0 +1,12 @@
+{
+  "name": "server",
+  "version": "0.0.5",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "cd ../../ && node src/server/build/index.js",
+    "build": "webpack --mode development",
+    "watch": "dotenv -e ../../.env.local -- nodemon --watch \"src/**\" --ext \"ts,json\" --exec \"ts-node src/index.ts\"",
+    "prettier": "prettier src/**/*.{ts,tsx} --write"
+  }
+}
