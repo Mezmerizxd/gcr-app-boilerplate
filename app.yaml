@@ -12,5 +12,3 @@ env_variables:
   SERVER_HOST: https://test.zvyezda.com
   SUPA_URL: ${{ secrets.SUPA_URL }}
   SUPA_KEY: ${{ secrets.SUPA_KEY }}
-
-start: yarn gcp:start
