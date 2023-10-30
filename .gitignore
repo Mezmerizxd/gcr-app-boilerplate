@@ -26,3 +26,4 @@ yarn-error.log*
 # custom
 logs/
 src/**/build
+.env
