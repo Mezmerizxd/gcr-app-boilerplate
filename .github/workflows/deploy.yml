@@ -1,37 +1,38 @@
-name: Deploy to Google App Engine
+name: Deploy to Google Cloud Run
 on:
   push:
     branches:
       - main
+
 jobs:
-  build:
-    name: GAE Deploy
+  build_and_deploy:
+    name: Build and Deploy
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout v2
+      - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Authenticate With Google Cloud
-        uses: google-github-actions/auth@v1
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v0.6.0
         with:
-          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+          service_account_key: ${{ secrets.GCP_CREDENTIALS }}
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
 
-      - name: Configure Docker
-        run: |
-          mkdir -p /home/runner/docker
-          echo '{"auths":{"gcr.io":{},"us.gcr.io":{},"eu.gcr.io":{},"asia.gcr.io":{}}}' > /home/runner/docker/config.json
-        env:
-          DOCKER_CONFIG: /home/runner/docker
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v1
+        with:
+          driver-opts: image=moby/buildkit:v0.8.2,0.8.2
 
       - name: Build and push Docker image
         run: |
-          docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/max-services:latest \
+          docker buildx create --use
+          docker buildx build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/max-services:latest \
             --build-arg GCP_PROJECT_ID=${{ secrets.GCP_PROJECT_ID }} \
             --build-arg SUPA_URL=${{ secrets.SUPA_URL }} \
-            --build-arg SUPA_KEY=${{ secrets.SUPA_KEY }} .
-          docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/max-services:latest
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
+            --build-arg SUPA_KEY=${{ secrets.SUPA_KEY }} \
+            --platform linux/amd64 . \
+            --push
+        working-directory: ${{ github.workspace }}
 
       - name: Deploy to Google Cloud Run
         run: |
@@ -42,6 +43,5 @@ jobs:
             --max-instances=1 \
             --cpu=1 \
             --memory=2Gi \
-            --timeout=30s \
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
+            --timeout=30s
+        working-directory: ${{ github.workspace }}
