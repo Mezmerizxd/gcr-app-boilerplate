@@ -17,7 +17,7 @@
     "react:build": "react-scripts build",
     "react:test": "react-scripts test",
     "react:eject": "react-scripts eject",
-    "gcp:start": "yarn && yarn build && yarn start"
+    "gcp:start": "yarn build && yarn start"
   },
   "dependencies": {
     "@babel/preset-env": "^7.23.2",

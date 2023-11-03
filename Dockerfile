@@ -2,9 +2,9 @@ FROM node:18
 
 WORKDIR /user/src/app
 
-COPY package*.json ./
+COPY package*.json yarn.lock ./
 
-RUN yarn install
+RUN yarn install --frozen-lockfile
 
 COPY . .
 
@@ -20,4 +20,5 @@ ENV SUPA_KEY=$SUPA_KEY
 
 EXPOSE 8080
 
+# yarn build && yarn start
 CMD ["yarn", "gcp:start"]
