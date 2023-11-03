@@ -25,11 +25,11 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/my-app:latest \
+          docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/max-services:latest \
             --build-arg GCP_PROJECT_ID=${{ secrets.GCP_PROJECT_ID }} \
             --build-arg SUPA_URL=${{ secrets.SUPA_URL }} \
             --build-arg SUPA_KEY=${{ secrets.SUPA_KEY }} .
-          docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/my-app:latest
+          docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/max-services:latest
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
 
