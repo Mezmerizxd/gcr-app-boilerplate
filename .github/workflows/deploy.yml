@@ -40,8 +40,8 @@ jobs:
             --platform managed \
             --region europe-west1 \
             --max-instances=1 \
-            --cpu=0.5 \
-            --memory=1Gi \
+            --cpu=1 \
+            --memory=2Gi \
             --timeout=30s \
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
