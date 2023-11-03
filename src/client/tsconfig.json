@@ -17,7 +17,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "types": ["@types/node", "@types/react", "@types/react-dom", "@types/jest"],
+    "types": ["@types/node", "@types/react", "@types/react-dom"],
     "downlevelIteration": true,
     "experimentalDecorators": true
   },
