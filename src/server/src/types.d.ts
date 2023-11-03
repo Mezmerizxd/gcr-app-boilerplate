@@ -15,9 +15,14 @@ declare namespace Server.Server {
     error?: string;
   };
 
-  type Apis = {
-    /* INDEX */
-    ['/test']: () => {
+  type Posts = {
+    ['/test-write']: () => {
+      name: string;
+    };
+  };
+
+  type Gets = {
+    ['/test-read']: () => {
       name: string;
     };
   };

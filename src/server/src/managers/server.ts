@@ -64,9 +64,10 @@ class ServerManager {
 
   start() {
     this.middlewares();
-    this.renderer();
 
     this.express.use('/api/v1', this.v1);
+
+    this.renderer();
 
     this._http.listen(this._port, (): void => {
       logger.info(`Server address http://localhost:${this._port}`);
