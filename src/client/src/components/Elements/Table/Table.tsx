@@ -33,7 +33,7 @@ export const Table = <Entry extends { id: string }>({ data, columns }: TableProp
                     <th
                       key={column.title + index}
                       scope="col"
-                      className="px-6 py-3 text-xs font-medium tracking-wider text-left text-radiance-dark uppercase"
+                      className="px-6 py-3 text-xs font-medium tracking-wider text-left text-accent-dark uppercase"
                     >
                       {column.title}
                     </th>

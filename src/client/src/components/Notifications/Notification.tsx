@@ -62,7 +62,7 @@ export const Notification = ({ notification: { id, type, title, message }, onDis
               </div>
               <div className="ml-4 flex-shrink-0 flex">
                 <button
-                  className="bg-background-dark rounded-md inline-flex text-radiance-light hover:text-radiance-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-radiance-light"
+                  className="bg-background-dark rounded-md inline-flex text-accent-light hover:text-accent-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-light"
                   onClick={() => {
                     onDismiss(id);
                   }}
@@ -73,7 +73,7 @@ export const Notification = ({ notification: { id, type, title, message }, onDis
               </div>
             </div>
           </div>
-          <div className="bg-radiance-light" style={{ width: `${widthPercentage}%`, height: '2px' }} />
+          <div className="bg-accent-light" style={{ width: `${widthPercentage}%`, height: '2px' }} />
         </div>
       </Transition>
     </div>

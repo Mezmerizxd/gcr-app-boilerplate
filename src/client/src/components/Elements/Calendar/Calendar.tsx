@@ -34,7 +34,7 @@ const Calendar = <Entry extends { id: string }>({ entries, dateField, renderCell
               className="group hover:bg-background duration-75 cursor-pointer border border-opacity-10 border-gray-200 overflow-clip"
             >
               <div className="min-w-max min-h-max p-1">
-                <div className="group-hover:bg-background text-radiance-light flex font-semibold">
+                <div className="group-hover:bg-background text-accent-light flex font-semibold">
                   {format(day, 'dd')}
                 </div>
                 <div key={index}>{renderCell(day, entries[index] ?? null)}</div>

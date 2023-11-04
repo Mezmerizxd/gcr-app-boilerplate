@@ -8,17 +8,20 @@ RUN yarn install --frozen-lockfile
 
 COPY . .
 
+ARG SERVER_PORT
+ARG SOCKET_HOST
+ARG SERVER_HOST
 ARG SUPA_URL
 ARG SUPA_KEY
 
 ENV MODE=production
-ENV SERVER_PORT=8080
-ENV SOCKET_HOST=https://test.zvyezda.com/ws
-ENV SERVER_HOST=https://test.zvyezda.com
+ENV SERVER_PORT=$SERVER_PORT
+ENV SOCKET_HOST=$SOCKET_HOST
+ENV SERVER_HOST=$SERVER_HOST
 ENV SUPA_URL=$SUPA_URL
 ENV SUPA_KEY=$SUPA_KEY
 
-EXPOSE 8080
+EXPOSE $SERVER_PORT
 
 # yarn build && yarn start
 CMD ["yarn", "gcr:start"]

@@ -29,12 +29,12 @@ const SideNavigation = ({ onSelect }: { onSelect?: () => void }) => {
           key={item.name}
           to={item.to}
           className={clsx(
-            'text-gray-300 hover:bg-background-light hover:text-radiance-light',
+            'text-gray-300 hover:bg-background-light hover:text-accent-light',
             'group flex items-center px-2 py-2 text-base font-medium rounded-md',
           )}
         >
           <item.icon
-            className={clsx('text-gray-400 group-hover:text-radiance-light', 'mr-4 flex-shrink-0 h-6 w-6')}
+            className={clsx('text-gray-400 group-hover:text-accent-light', 'mr-4 flex-shrink-0 h-6 w-6')}
             aria-hidden="true"
           />
           {item.name}
@@ -69,7 +69,7 @@ const UserNavigation = () => {
       {({ open }) => (
         <>
           <div>
-            <Menu.Button className="max-w-xs flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-radiance-light">
+            <Menu.Button className="max-w-xs flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-light">
               <span className="sr-only">Open user menu</span>
               {user.profile.avatar ? (
                 <img className="h-10 w-10 rounded-full" src={user.profile.avatar} alt="Workflow" />
@@ -159,11 +159,11 @@ const MobileSidebar = ({ sidebarOpen, setSidebarOpen }: MobileSidebarProps) => {
             >
               <div className="absolute top-0 right-0 -mr-12 pt-2">
                 <button
-                  className="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-radiance-light"
+                  className="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-accent-light"
                   onClick={() => setSidebarOpen(false)}
                 >
                   <span className="sr-only">Close sidebar</span>
-                  <XIcon className="h-6 w-6 text-radiance-light" aria-hidden="true" />
+                  <XIcon className="h-6 w-6 text-accent-light" aria-hidden="true" />
                 </button>
               </div>
             </Transition.Child>
@@ -210,7 +210,7 @@ const Logo = () => {
         src="https://cdn1.iconfinder.com/data/icons/programing-development-8/24/react_logo-512.png"
         alt="Workflow"
       />
-      <span className="text-xl text-radiance-light font-semibold">Radiance</span>
+      <span className="text-xl text-accent-light font-semibold">GCR-App-Boilerplate</span>
     </Link>
   );
 };
@@ -229,7 +229,7 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
       <div className="flex flex-col w-0 flex-1 overflow-hidden">
         <div className="relative z-10 flex-shrink-0 flex h-16 bg-background-light shadow">
           <button
-            className="px-4 text-radiance-light focus:outline-none focus:ring-2 focus:ring-inset focus:ring-radiance-light md:hidden"
+            className="px-4 text-accent-light focus:outline-none focus:ring-2 focus:ring-inset focus:ring-accent-light md:hidden"
             onClick={() => setSidebarOpen(true)}
           >
             <span className="sr-only">Open sidebar</span>

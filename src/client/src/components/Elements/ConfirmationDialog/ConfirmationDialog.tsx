@@ -70,7 +70,7 @@ export const ConfirmationDialog = ({
             <Button
               type="button"
               variant="inverse"
-              className="w-full inline-flex justify-center rounded-md border focus:ring-1 focus:ring-offset-1 focus:ring-radiance-light sm:mt-0 sm:w-auto sm:text-sm"
+              className="w-full inline-flex justify-center rounded-md border focus:ring-1 focus:ring-offset-1 focus:ring-accent-light sm:mt-0 sm:w-auto sm:text-sm"
               onClick={close}
               ref={cancelButtonRef}
             >

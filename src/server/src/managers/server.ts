@@ -49,14 +49,19 @@ class ServerManager {
       },
     });
     this.v1 = express.Router();
-    if (process.env.SUPA_URL && process.env.SUPA_KEY) {
-      this.supabase = createClient<Database>(process.env.SUPA_URL, process.env.SUPA_KEY);
+
+    if (this._isProduction) {
+      this.supabase = createClient<Database>(process.env.PROD_SUPA_URL, process.env.PROD_SUPA_KEY);
+      this._port = Number(process.env.PROD_SERVER_PORT);
+    } else {
+      this.supabase = createClient<Database>(process.env.DEV_SUPA_URL, process.env.DEV_SUPA_KEY);
+      this._port = Number(process.env.DEV_SERVER_PORT);
     }
+
     this.socket = this._io.of('/socket').use((socket: sckio.Socket, next: (err?: Error) => void) => {
       logger.incomingSocket(socket);
       next();
     });
-    this._port = Number(process.env.SERVER_PORT);
   }
 
   start() {
