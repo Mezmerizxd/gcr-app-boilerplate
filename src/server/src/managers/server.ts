@@ -25,7 +25,6 @@ class ServerManager {
   _io: sckio.Server;
   express: express.Application;
   socket: sckio.Namespace<Server.Socket.ClientToServer & Server.Socket.ServerToClient>;
-  stream: WebSocket.Server;
 
   v1: express.Router;
   supabase: SupabaseClient;
@@ -56,9 +55,6 @@ class ServerManager {
     this.socket = this._io.of('/socket').use((socket: sckio.Socket, next: (err?: Error) => void) => {
       logger.incomingSocket(socket);
       next();
-    });
-    this.stream = new WebSocket.Server({
-      port: 3005,
     });
     this._port = Number(process.env.SERVER_PORT);
   }
