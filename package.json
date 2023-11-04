@@ -1,5 +1,5 @@
 {
-  "name": "max-services",
+  "name": "gcr-app-boilerplate",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -17,8 +17,8 @@
     "react:build": "react-scripts build",
     "react:test": "react-scripts test",
     "react:eject": "react-scripts eject",
-    "gcp:deploy": "dotenv -e .env node deploy.js",
-    "gcp:start": "yarn build && yarn start"
+    "gcr:deploy": "dotenv -e .env node deploy.js",
+    "gcr:start": "yarn build && yarn start"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.17",

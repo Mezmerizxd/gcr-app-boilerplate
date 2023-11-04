@@ -21,4 +21,4 @@ ENV SUPA_KEY=$SUPA_KEY
 EXPOSE 8080
 
 # yarn build && yarn start
-CMD ["yarn", "gcp:start"]
+CMD ["yarn", "gcr:start"]

@@ -102,7 +102,7 @@ function deploy() {
   const args = [
     'run',
     'deploy',
-    'max-services',
+    package.name,
     '--image',
     image_name,
     '--platform',
