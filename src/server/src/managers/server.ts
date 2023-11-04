@@ -58,7 +58,7 @@ class ServerManager {
       this._port = Number(process.env.DEV_SERVER_PORT);
     }
 
-    this.socket = this._io.of('/socket').use((socket: sckio.Socket, next: (err?: Error) => void) => {
+    this.socket = this._io.of('/ws').use((socket: sckio.Socket, next: (err?: Error) => void) => {
       logger.incomingSocket(socket);
       next();
     });

@@ -29,6 +29,10 @@ declare namespace Server.Server {
 
   type Gets = {
     ['/test-read']: () => any;
+
+    ['/get-socket-details']: () => {
+      socketUrl: string;
+    };
   };
 }
 

@@ -21,6 +21,7 @@
     "gcr:start": "yarn build && yarn start"
   },
   "dependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "v1",
     "@hookform/resolvers": "^3.3.2",

@@ -15,5 +15,5 @@ export const AppRoutes = () => {
 
   const element = useRoutes([...routes, ...commonRoutes]);
 
-  return <>{element}</>;
+  return <div className="bg-background text-white-light">{element}</div>;
 };
