@@ -1,3 +1,9 @@
+type TestingDatabaseAndController = {
+  id: number;
+  message: string;
+  created_at: any;
+};
+
 declare namespace Server {}
 
 declare namespace Server.Socket {
@@ -22,9 +28,7 @@ declare namespace Server.Server {
   };
 
   type Gets = {
-    ['/test-read']: () => {
-      name: string;
-    };
+    ['/test-read']: () => any;
   };
 }
 

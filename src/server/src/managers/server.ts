@@ -8,6 +8,7 @@ import * as fs from 'fs';
 import { logger } from '../helpers/logger';
 import * as WebSocket from 'ws';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { Database } from '../database.types';
 
 class ServerManager {
   protected static instance: ServerManager;
@@ -50,7 +51,7 @@ class ServerManager {
     });
     this.v1 = express.Router();
     if (process.env.SUPA_URL && process.env.SUPA_KEY) {
-      this.supabase = createClient(process.env.SUPA_URL, process.env.SUPA_KEY);
+      this.supabase = createClient<Database>(process.env.SUPA_URL, process.env.SUPA_KEY);
     }
     this.socket = this._io.of('/socket').use((socket: sckio.Socket, next: (err?: Error) => void) => {
       logger.incomingSocket(socket);
