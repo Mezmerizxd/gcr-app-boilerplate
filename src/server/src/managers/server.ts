@@ -4,11 +4,8 @@ import * as express from 'express';
 import * as cors from 'cors';
 import * as bodyParser from 'body-parser';
 import * as path from 'path';
-import * as fs from 'fs';
 import { logger } from '../helpers/logger';
-import * as WebSocket from 'ws';
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
-import { Database } from '../database.types';
+import { PrismaClient } from '@prisma/client';
 
 class ServerManager {
   protected static instance: ServerManager;
@@ -27,7 +24,7 @@ class ServerManager {
   socket: sckio.Namespace<Server.Socket.ClientToServer & Server.Socket.ServerToClient>;
 
   v1: express.Router;
-  supabase: SupabaseClient;
+  prisma: PrismaClient;
 
   _staticFolderPath: string = '../../client';
   _isProduction: boolean;
@@ -51,12 +48,12 @@ class ServerManager {
     this.v1 = express.Router();
 
     if (this._isProduction) {
-      this.supabase = createClient<Database>(process.env.PROD_SUPA_URL, process.env.PROD_SUPA_KEY);
       this._port = Number(process.env.PROD_SERVER_PORT);
     } else {
-      this.supabase = createClient<Database>(process.env.DEV_SUPA_URL, process.env.DEV_SUPA_KEY);
       this._port = Number(process.env.DEV_SERVER_PORT);
     }
+
+    this.prisma = new PrismaClient();
 
     this.socket = this._io.of('/ws').use((socket: sckio.Socket, next: (err?: Error) => void) => {
       logger.incomingSocket(socket);

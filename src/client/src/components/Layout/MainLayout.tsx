@@ -71,8 +71,8 @@ const UserNavigation = () => {
           <div>
             <Menu.Button className="max-w-xs flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-light">
               <span className="sr-only">Open user menu</span>
-              {user.profile.avatar ? (
-                <img className="h-10 w-10 rounded-full" src={user.profile.avatar} alt="Workflow" />
+              {user.profile.avatar_url ? (
+                <img className="h-10 w-10 rounded-full" src={user.profile.avatar_url} alt="Workflow" />
               ) : (
                 <div className="flex items-center justify-center h-10 w-10 rounded-full bg-blue-400">
                   <h1 className="text-white text-lg">{user.profile.username[0]}</h1>

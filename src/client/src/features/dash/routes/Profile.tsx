@@ -1,9 +1,5 @@
-import { Spinner, Table } from '../../../components/Elements';
 import { ContentLayout } from '../../../components/Layout';
 import { useAuth } from '../../../libs/auth';
-
-import { UpdateProfile } from '../components/UpdateProfile';
-import { UpdatePassword } from '../components/UpdatePassword';
 
 type EntryProps = {
   label: string;
@@ -29,19 +25,16 @@ export const Profile = () => {
           <div className="px-4 py-5 sm:px-6">
             <div className="flex justify-between">
               <h3 className="text-lg leading-6 font-medium text-gray-300">User Information</h3>
-              <UpdateProfile />
             </div>
             <p className="mt-1 max-w-2xl text-sm text-gray-200">Personal details of the user.</p>
           </div>
           <div className="border-t border-background-light px-4 py-5 sm:p-0">
             <dl className="sm:divide-y sm:divide-background-light">
-              <Entry label="Username" value={user.profile.username} />
-              <Entry label="Email Address" value={user.profile.email} />
-              <Entry label="Role" value={user.profile.role} />
-              <Entry label="Biography" value={user.profile.biography || 'None'} />
+              <Entry label="Username" value={user.account.username} />
+              <Entry label="Email Address" value={user.account.email} />
+              <Entry label="Role" value={user.account.role} />
             </dl>
           </div>
-          <UpdatePassword />
         </div>
       </ContentLayout>
     </>

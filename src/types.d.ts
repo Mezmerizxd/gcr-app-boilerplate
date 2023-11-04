@@ -4,6 +4,33 @@ type TestingDatabaseAndController = {
   created_at: any;
 };
 
+interface Session {
+  id: string;
+  token: string;
+  expires: Date;
+  device: string;
+  created_at: Date;
+}
+
+interface Profile {
+  id: string;
+  username: string;
+  role: 'ADMIN' | 'DEVELOPER' | 'USER';
+  avatar_url?: string | null;
+}
+
+interface Account {
+  id: string;
+  username: string;
+  role: 'ADMIN' | 'DEVELOPER' | 'USER';
+  avatar_url?: string | null;
+  email: string;
+  password: string;
+  sessions: Session[];
+  created_at: Date;
+  updated_at: Date;
+}
+
 declare namespace Server {}
 
 declare namespace Server.Socket {
@@ -34,6 +61,8 @@ declare namespace Server.Server {
       socketUrl: string;
     };
   };
+
+  type Patches = {};
 }
 
 declare namespace Server.Helpers {

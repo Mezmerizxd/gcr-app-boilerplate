@@ -1,5 +1,5 @@
 var server_port, socket_host, server_host;
-var supa_url, supa_key, image_url, image_name, project_id;
+var postgres_url, image_url, image_name, project_id;
 
 var region, max_instances, cpu, memory, timeout;
 
@@ -12,12 +12,11 @@ if (process.env.PROD_SERVER_PORT && process.env.PROD_SOCKET_HOST && process.env.
   throw new Error('Missing PROD_SERVER_PORT, PROD_SOCKET_HOST or PROD_SERVER_HOST environment variable');
 }
 
-// Get Supabase URL and Key from environment variables
-if (process.env.PROD_SUPA_URL && process.env.PROD_SUPA_KEY) {
-  supa_url = process.env.PROD_SUPA_URL;
-  supa_key = process.env.PROD_SUPA_KEY;
+// Get Postgres URL and Key from environment variables
+if (process.env.POSTGRES_URL) {
+  postgres_url = process.env.POSTGRES_URL;
 } else {
-  throw new Error('Missing PROD_SUPA_URL or PROD_SUPA_KEY environment variable');
+  throw new Error('Missing POSTGRES_URL environment variable');
 }
 
 // Get machine specific variables from environment variables
@@ -97,9 +96,7 @@ function build() {
     '--build-arg',
     'SERVER_HOST=' + server_host,
     '--build-arg',
-    'SUPA_URL=' + supa_url,
-    '--build-arg',
-    'SUPA_KEY=' + supa_key,
+    'POSTGRES_URL=' + postgres_url,
     '.',
   ];
   const result = spawnSync('sudo docker', args, { stdio: 'inherit', shell: true });
