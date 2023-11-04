@@ -2,7 +2,7 @@ import * as express from 'express';
 import { logger } from './logger';
 import { inspect } from 'util';
 
-function Post<T extends keyof Server.Server.Posts>(
+export function Post<T extends keyof Server.Server.Posts>(
   version: express.Router,
   url: T,
   requireAuth: boolean,
@@ -49,7 +49,7 @@ function Post<T extends keyof Server.Server.Posts>(
   });
 }
 
-function Get<T extends keyof Server.Server.Gets>(
+export function Get<T extends keyof Server.Server.Gets>(
   version: express.Router,
   url: T,
   requireAuth: boolean,
@@ -95,5 +95,3 @@ function Get<T extends keyof Server.Server.Gets>(
     res.json(result);
   });
 }
-
-export default { Post, Get };

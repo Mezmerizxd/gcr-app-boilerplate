@@ -1,11 +1,11 @@
 import { logger } from '../helpers/logger';
-import { serverManager } from '../managers/server';
-import endpoint from '../helpers/endpoint';
+import { serverManager } from '../managers/server-manager';
+import { Get } from '../helpers/endpoint';
 
-import Test from './test';
+import { TestController } from './test-controller';
 
 export default (): void => {
-  endpoint.Get(serverManager.v1, '/get-socket-details', false, async () => {
+  Get(serverManager.v1, '/get-socket-details', false, async () => {
     let sockerUrl = null;
 
     if (serverManager._isProduction) {
@@ -23,5 +23,5 @@ export default (): void => {
 
   logger.loadedController('index');
 
-  Test();
+  TestController();
 };

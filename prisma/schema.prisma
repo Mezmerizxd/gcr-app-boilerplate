@@ -21,6 +21,7 @@ model Sessions {
   id         String   @id @default(uuid())
   token      String   @unique
   expires    DateTime
+  expired    Boolean  @default(false)
   device     String
   created_at DateTime @default(now())
   account    Accounts @relation(fields: [account_id], references: [id])

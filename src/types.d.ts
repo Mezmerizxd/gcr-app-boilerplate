@@ -8,6 +8,7 @@ interface Session {
   id: string;
   token: string;
   expires: Date;
+  expired: boolean;
   device: string;
   created_at: Date;
 }

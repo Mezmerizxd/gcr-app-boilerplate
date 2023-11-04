@@ -1,15 +1,15 @@
-import { serverManager } from '../managers/server';
+import { serverManager } from '../managers';
 import { logger } from '../helpers/logger';
-import Endpoint from '../helpers/endpoint';
+import { Post, Get } from '../helpers/endpoint';
 
-export default (): void => {
+export const TestController = (): void => {
   serverManager.socket.on('connection', (s) => {
     s.on('disconnect', () => {
       logger.info('Socket disconnected');
     });
   });
 
-  Endpoint.Post(serverManager.v1, '/test-write', false, async (req) => {
+  Post(serverManager.v1, '/test-write', false, async (req) => {
     return {
       data: {
         name: 'Empty',
@@ -17,7 +17,7 @@ export default (): void => {
     };
   });
 
-  Endpoint.Get(serverManager.v1, '/test-read', false, async (req) => {
+  Get(serverManager.v1, '/test-read', false, async (req) => {
     return {
       data: 'a',
     };

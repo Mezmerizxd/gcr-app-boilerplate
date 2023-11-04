@@ -1,5 +1,5 @@
 import { logger } from './helpers/logger';
-import { serverManager } from './managers/server';
+import { serverManager, sessionManager } from './managers';
 import Controllers from './controllers';
 
 logger.start();
@@ -7,3 +7,4 @@ logger.start();
 Controllers();
 
 serverManager.start();
+sessionManager.start();
