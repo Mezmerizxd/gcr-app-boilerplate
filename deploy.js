@@ -1,15 +1,16 @@
-var supa_url, supa_key, image_url;
+var supa_url, supa_key, image_url, image_name;
 
 var region, max_instances, cpu, memory, timeout;
 
-if (process.env.SUPA_URL && process.env.SUPA_KEY && process.env.IMAGE_URL) {
+// Get Supabase URL and Key from environment variables
+if (process.env.SUPA_URL && process.env.SUPA_KEY) {
   supa_url = process.env.SUPA_URL;
   supa_key = process.env.SUPA_KEY;
-  image_url = process.env.IMAGE_URL;
 } else {
-  throw new Error('Missing SUPA_URL, SUPA_KEY or IMAGE_URL environment variable');
+  throw new Error('Missing SUPA_URL or SUPA_KEY environment variable');
 }
 
+// Get machine specific variables from environment variables
 if (process.env.REGION && process.env.MAX_INSTANCES && process.env.CPU && process.env.MEMORY && process.env.TIMEOUT) {
   region = process.env.REGION;
   max_instances = process.env.MAX_INSTANCES;
@@ -20,6 +21,21 @@ if (process.env.REGION && process.env.MAX_INSTANCES && process.env.CPU && proces
   throw new Error('Missing REGION, MAX_INSTANCES, CPU, MEMORY or TIMEOUT environment variable');
 }
 
+if (process.env.IMAGE_URL) {
+  image_url = process.env.IMAGE_URL;
+} else {
+  throw new Error('Missing IMAGE_URL environment variable');
+}
+
+// Get package name and version from package.json and configure it as Docker image name
+const package = require('./package.json');
+if (!package.name || !package.version) {
+  throw new Error('Missing package name or version');
+} else {
+  image_name = `${image_url}/${package.name}:${package.version}`;
+}
+
+// Go into Sudo mode
 function goSudo() {
   const { spawnSync } = require('child_process');
   const result = spawnSync('sudo', ['echo', 'sudo'], { stdio: 'ignore', shell: true });
@@ -29,6 +45,7 @@ function goSudo() {
   return true;
 }
 
+// Check if Docker is installed
 function checkDocker() {
   const { spawnSync } = require('child_process');
   const result = spawnSync('sudo docker', ['version'], { stdio: 'ignore', shell: true });
@@ -38,6 +55,7 @@ function checkDocker() {
   return true;
 }
 
+// Check if Gcloud is installed
 function checkGcloud() {
   const { spawnSync } = require('child_process');
   const result = spawnSync('sudo gcloud', ['version'], { stdio: 'ignore', shell: true });
@@ -47,12 +65,13 @@ function checkGcloud() {
   return true;
 }
 
+// Build Docker image
 function build() {
   const { spawnSync } = require('child_process');
   const args = [
     'build',
     '-t',
-    image_url,
+    image_name,
     '--build-arg',
     'SUPA_URL=' + supa_url,
     '--build-arg',
@@ -66,9 +85,10 @@ function build() {
   return true;
 }
 
+// Push Docker image to Google Container Registry
 function push() {
   const { spawnSync } = require('child_process');
-  const args = ['push', image_url];
+  const args = ['push', image_name];
   const result = spawnSync('sudo docker', args, { stdio: 'inherit', shell: true });
   if (result.status !== 0) {
     return false;
@@ -76,6 +96,7 @@ function push() {
   return true;
 }
 
+// Deploy Docker image to Google Cloud Run
 function deploy() {
   const { spawnSync } = require('child_process');
   const args = [
@@ -83,7 +104,7 @@ function deploy() {
     'deploy',
     'max-services',
     '--image',
-    image_url,
+    image_name,
     '--platform',
     'managed',
     '--region',
@@ -105,6 +126,10 @@ function deploy() {
   }
   return true;
 }
+
+/*
+  Main
+*/
 
 if (!goSudo()) {
   console.log('Cannot elevate privileges');
