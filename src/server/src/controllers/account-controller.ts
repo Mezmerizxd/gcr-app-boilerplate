@@ -4,7 +4,7 @@ import { Get } from '../helpers/endpoint';
 
 export const AccountController = (): void => {
   /**
-   * @api {post} /account/profile
+   * @api {get} /account/profile
    * @apiName Profile
    * @apiGroup Account
    * @apiVersion 1.0.0
