@@ -9,13 +9,19 @@ export const TestController = (): void => {
     });
   });
 
-  Post(serverManager.v1, '/test-write', false, async (req) => {
-    return {
-      data: {
-        name: 'Empty',
-      },
-    };
-  });
+  Post(
+    serverManager.v1,
+    '/test-write',
+    async (req) => {
+      return {
+        data: {
+          name: 'Empty',
+        },
+      };
+    },
+    false,
+    true,
+  );
 
   Get(serverManager.v1, '/test-read', false, async (req) => {
     return {

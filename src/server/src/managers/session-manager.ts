@@ -52,11 +52,11 @@ class SessionManager {
     logger.debug('[SessionManager] interval started');
 
     let sessions = await this.getAllSessions();
-    if (!sessions) {
+    if (!sessions.sessions) {
       return;
     }
 
-    sessions = sessions.filter((session) => {
+    sessions.sessions = sessions.sessions.filter((session) => {
       if (session.expired) {
         return false;
       }
@@ -65,7 +65,7 @@ class SessionManager {
 
     const date = new Date();
 
-    sessions.forEach((session) => {
+    sessions.sessions.forEach((session) => {
       let expired = false;
 
       // check if session is expired
@@ -82,42 +82,42 @@ class SessionManager {
     logger.debug('[SessionManager] interval finished');
   }
 
-  async getAllSessions(): Promise<Session[] | null> {
+  async getAllSessions(): Promise<{ sessions?: Session[]; error?: string }> {
     const sessions = await this.prisma.sessions.findMany();
     if (!sessions) {
-      return null;
+      return { error: 'no sessions found' };
     }
 
-    return sessions;
+    return { sessions: sessions };
   }
 
-  async getAllSessionsByAccountId(accountId: string): Promise<Session[] | null> {
+  async getAllSessionsByAccountId(accountId: string): Promise<{ sessions?: Session[]; error?: string }> {
     const sessions = await this.prisma.sessions.findMany({
       where: {
         account_id: accountId,
       },
     });
     if (!sessions) {
-      return null;
+      return { error: 'no sessions found' };
     }
 
-    return sessions;
+    return { sessions: sessions };
   }
 
-  async getSessionByToken(token: string): Promise<Session | null> {
+  async getSessionByToken(token: string): Promise<{ session?: Session; error?: string }> {
     const session = await this.prisma.sessions.findFirst({
       where: {
         token: token,
       },
     });
     if (!session) {
-      return null;
+      return { error: 'no session found' };
     }
 
-    return session;
+    return { session: session };
   }
 
-  async getLatestSession(accountId: string): Promise<Session | null> {
+  async getLatestSession(accountId: string): Promise<{ session?: Session; error?: string }> {
     const session = await this.prisma.sessions.findFirst({
       where: {
         account_id: accountId,
@@ -127,34 +127,36 @@ class SessionManager {
       },
     });
     if (!session) {
-      return null;
+      return { error: 'no session found' };
     }
 
-    return session;
+    return { session: session };
   }
 
-  async createSession(account: Account, device: string): Promise<Session | null> {
+  async createSession(accountId: string, device: string): Promise<{ session?: Session; error?: string }> {
     const token = await this.createSessionToken();
-    if (!token) {
-      return null;
+    if (!token.token) {
+      logger.debug('[SessionManager] createSession failed to create token');
+      return { error: token.error };
     }
 
     const session = await this.prisma.sessions.create({
       data: {
-        account_id: account.id,
-        token: token,
+        account_id: accountId,
+        token: token.token,
         device: device,
         expires: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 7), // 7 days
       },
     });
     if (!session) {
-      return null;
+      logger.debug('[SessionManager] createSession failed to add session to database');
+      return { error: 'no session created' };
     }
 
-    return session;
+    return { session: session };
   }
 
-  async expireSession(session: Session): Promise<Session | null> {
+  async expireSession(session: Session): Promise<{ session?: Session; error?: string }> {
     const expiredSession = await this.prisma.sessions.update({
       where: {
         id: session.id,
@@ -164,29 +166,44 @@ class SessionManager {
       },
     });
     if (!expiredSession) {
-      return null;
+      return { error: 'no session expired' };
     }
 
-    return expiredSession;
+    return { session: expiredSession };
   }
 
-  async createSessionToken(): Promise<string | null> {
-    let token = null;
-    let retrys = 0;
+  async createSessionToken(): Promise<{ token?: string; error?: string }> {
+    const MAX_RETRIES = 5;
+    let token: string | null = null;
 
-    while (retrys < 5) {
+    for (let i = 0; i < MAX_RETRIES; i++) {
       token = crypto.randomBytes(64).toString('hex');
-
-      const session = await this.getSessionByToken(token);
-      if (!session) {
-        return token;
+      if (!token) {
+        logger.debug('[SessionManager] createSessionToken failed to create token');
+        return { error: 'no token created' };
       }
 
-      token = crypto.randomBytes(64).toString('hex');
-      retrys++;
+      try {
+        const session = await this.getSessionByToken(token);
+        if (!session.session) {
+          return { token: token };
+        } else {
+          logger.debug('[SessionManager] createSessionToken token already exists');
+          return { error: session.error };
+        }
+      } catch (error) {
+        return { error: 'something went wrong created token' };
+      }
+
+      token = null;
     }
 
-    return token;
+    if (token) {
+      return { token: token };
+    } else {
+      logger.debug('[SessionManager] createSessionToken failed to create token');
+      return { error: 'failed to create token' };
+    }
   }
 }
 

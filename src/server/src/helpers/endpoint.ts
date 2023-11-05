@@ -5,14 +5,28 @@ import { inspect } from 'util';
 export function Post<T extends keyof Server.Server.Posts>(
   version: express.Router,
   url: T,
-  requireAuth: boolean,
-  callback: (req: express.Request) => Promise<{
+  callback: (
+    req: express.Request,
+    body: Parameters<Server.Server.Posts[T]>[0],
+  ) => Promise<{
     server?: Server.Server.BaseResponse;
     data?: ReturnType<Server.Server.Posts[T]>;
   }>,
+  requireAuth: boolean = false,
+  requireBody: boolean = false,
 ): void {
   version.post(url, async (req, res) => {
     logger.debug(`Endpoint | Incoming: ${url} | ${inspect(req.body, { depth: 4, colors: true })}`);
+
+    if (requireBody && !req.body) {
+      res.json({
+        server: {
+          success: false,
+          error: 'Body not found',
+        },
+      });
+      return;
+    }
 
     if (requireAuth) {
       const { authorization } = req.headers;
@@ -26,7 +40,7 @@ export function Post<T extends keyof Server.Server.Posts>(
         return;
       }
 
-      const result = await callback(req);
+      const result = await callback(req, req.body);
       if (!result.server || result.server.success) {
         result.server = {
           success: true,
@@ -37,7 +51,7 @@ export function Post<T extends keyof Server.Server.Posts>(
       res.json(result);
       return;
     }
-    const result = await callback(req);
+    const result = await callback(req, req.body);
     if (!result.server || result.server.success) {
       result.server = {
         success: true,

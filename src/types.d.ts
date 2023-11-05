@@ -10,6 +10,7 @@ interface Session {
   expires: Date;
   expired: boolean;
   device: string;
+  account_id: string;
   created_at: Date;
 }
 
@@ -49,10 +50,20 @@ declare namespace Server.Server {
     error?: string;
   };
 
+  type Device = {
+    userAgent?: string;
+    ip?: string;
+    headers?: string;
+  };
+
   type Posts = {
     ['/test-write']: () => {
       name: string;
     };
+
+    /* AUTH */
+    ['/auth/login']: (data: LoginAccountData) => Account | null;
+    ['/auth/create']: (data: CreateAccountData) => Account | null;
   };
 
   type Gets = {
@@ -72,4 +83,19 @@ declare namespace Server.Helpers {
     date: string;
     logs: string[];
   };
+}
+
+type FnError = {
+  error: string;
+};
+
+interface CreateAccountData {
+  username: string;
+  email: string;
+  password: string;
+}
+
+interface LoginAccountData {
+  email: string;
+  password: string;
 }
