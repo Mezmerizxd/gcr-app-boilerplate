@@ -11,12 +11,6 @@ const schema = z.object({
   password: z.string().min(1, 'Required'),
 });
 
-type RegisterValues = {
-  email: string;
-  username: string;
-  password: string;
-};
-
 type RegisterFormProps = {
   onSuccess: () => void;
 };
@@ -27,7 +21,7 @@ export const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
 
   return (
     <div>
-      <Form<RegisterValues, typeof schema>
+      <Form<CreateAccountData, typeof schema>
         onSubmit={async (values) => {
           const response = await register(values);
           if (response.profile) {

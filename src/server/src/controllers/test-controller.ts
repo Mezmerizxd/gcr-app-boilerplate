@@ -23,11 +23,16 @@ export const TestController = (): void => {
     true,
   );
 
-  Get(serverManager.v1, '/test-read', false, async (req) => {
-    return {
-      data: 'a',
-    };
-  });
+  Get(
+    serverManager.v1,
+    '/test-read',
+    async (req) => {
+      return {
+        data: 'a',
+      };
+    },
+    false,
+  );
 
   logger.loadedController('test');
 };

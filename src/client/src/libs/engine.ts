@@ -33,6 +33,55 @@ class Engine {
     return await this.Get('/get-socket-details', false);
   }
 
+  public async Login(body: Parameters<Server.Server.Posts['/auth/login']>[0]): Promise<{
+    server: Server.Server.BaseResponse;
+    data: ReturnType<Server.Server.Posts['/auth/login']> | null;
+  }> {
+    const account = await this.Post('/auth/login', false, body);
+    if (account.data) {
+      this.account = account.data;
+      this.profile = {
+        ...account.data,
+      };
+      account.data.sessions.forEach((session) => {
+        if (session.expired === false) {
+          storage.setToken(session.token);
+        }
+      });
+    }
+    return account;
+  }
+
+  public async Create(body: Parameters<Server.Server.Posts['/auth/create']>[0]): Promise<{
+    server: Server.Server.BaseResponse;
+    data: ReturnType<Server.Server.Posts['/auth/create']> | null;
+  }> {
+    const account = await this.Post('/auth/create', false, body);
+    if (account.data) {
+      this.account = account.data;
+      this.profile = {
+        ...account.data,
+      };
+      account.data.sessions.forEach((session) => {
+        if (session.expired === false) {
+          storage.setToken(session.token);
+        }
+      });
+    }
+    return account;
+  }
+
+  public async GetProfile(): Promise<{
+    server: Server.Server.BaseResponse;
+    data: ReturnType<Server.Server.Gets['/account/profile']> | null;
+  }> {
+    const profile = await this.Get('/account/profile', true);
+    if (profile.data) {
+      this.profile = profile.data;
+    }
+    return profile;
+  }
+
   private async Patch<T extends keyof Server.Server.Patches>(
     event: T,
     authorization: boolean,
@@ -63,7 +112,7 @@ class Engine {
   private async Post<T extends keyof Server.Server.Posts>(
     event: T,
     authorization: boolean,
-    body: any,
+    body: Parameters<Server.Server.Posts[T]>[0],
   ): Promise<{ server: Server.Server.BaseResponse; data: ReturnType<Server.Server.Posts[T]> | null }> {
     try {
       const response = await fetch(`${this.serverUrl}${event}`, {

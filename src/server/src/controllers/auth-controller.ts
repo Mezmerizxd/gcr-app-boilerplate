@@ -85,5 +85,5 @@ export const AuthController = (): void => {
     true,
   );
 
-  logger.loadedController('test');
+  logger.loadedController('auth');
 };

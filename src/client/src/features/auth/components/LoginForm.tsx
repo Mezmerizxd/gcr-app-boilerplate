@@ -6,14 +6,9 @@ import { useAuth } from '../../../libs/auth';
 import { useNotificationStore } from '../../../stores/notifications';
 
 const schema = z.object({
-  username: z.string().min(1, 'Required'),
+  email: z.string().min(1, 'Required'),
   password: z.string().min(1, 'Required'),
 });
-
-type LoginValues = {
-  username: string;
-  password: string;
-};
 
 type LoginFormProps = {
   onSuccess: () => void;
@@ -25,7 +20,7 @@ export const LoginForm = ({ onSuccess }: LoginFormProps) => {
 
   return (
     <div>
-      <Form<LoginValues, typeof schema>
+      <Form<LoginAccountData, typeof schema>
         onSubmit={async (values) => {
           const response = await login(values);
           if (response.profile) {
@@ -42,12 +37,7 @@ export const LoginForm = ({ onSuccess }: LoginFormProps) => {
       >
         {({ register, formState }) => (
           <>
-            <InputField
-              type="text"
-              label="Username"
-              error={formState.errors['username']}
-              registration={register('username')}
-            />
+            <InputField type="email" label="Email" error={formState.errors['email']} registration={register('email')} />
             <InputField
               type="password"
               label="Password"

@@ -148,6 +148,64 @@ class AccountManager {
     };
   }
 
+  async getAccountByToken(token: string): Promise<{
+    account?: Account;
+    error?: string;
+  }> {
+    const session = await this.prisma.sessions.findUnique({
+      where: {
+        token,
+      },
+      include: {
+        account: {
+          include: {
+            sessions: true,
+          },
+        },
+      },
+    });
+    if (!session) {
+      return {
+        error: 'No session found',
+      };
+    }
+
+    return {
+      account: {
+        ...session.account,
+      },
+    };
+  }
+
+  async getProfileByToken(token: string): Promise<{
+    profile?: Profile;
+    error?: string;
+  }> {
+    const session = await this.prisma.sessions.findUnique({
+      where: {
+        token,
+      },
+      include: {
+        account: {
+          include: {
+            sessions: true,
+          },
+        },
+      },
+    });
+    if (!session) {
+      return {
+        error: 'No session found',
+      };
+    }
+
+    return {
+      profile: {
+        ...session.account,
+      },
+    };
+  }
+
   async loginAccount(
     data: LoginAccountData,
     device: string,
@@ -249,6 +307,15 @@ class AccountManager {
         ...account,
         sessions: [session.session],
       },
+    };
+  }
+
+  convertAccountToProfile(account: Account): Profile {
+    return {
+      id: account.id,
+      username: account.username,
+      role: account.role,
+      avatar_url: account.avatar_url,
     };
   }
 

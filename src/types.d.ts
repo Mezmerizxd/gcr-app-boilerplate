@@ -72,6 +72,9 @@ declare namespace Server.Server {
     ['/get-socket-details']: () => {
       socketUrl: string;
     };
+
+    /* ACCOUNT */
+    ['/account/profile']: () => Profile | null;
   };
 
   type Patches = {};
@@ -89,13 +92,13 @@ type FnError = {
   error: string;
 };
 
-interface CreateAccountData {
+type CreateAccountData = {
   username: string;
   email: string;
   password: string;
-}
+};
 
-interface LoginAccountData {
+type LoginAccountData = {
   email: string;
   password: string;
-}
+};
