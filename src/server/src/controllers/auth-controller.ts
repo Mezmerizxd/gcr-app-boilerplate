@@ -14,11 +14,7 @@ export const AuthController = (): void => {
     serverManager.v1,
     '/auth/login',
     async (req, body) => {
-      const device: Server.Server.Device = {
-        userAgent: req.headers['user-agent'] as string,
-        ip: req.ip as string,
-        headers: JSON.stringify(req.headers) as string,
-      };
+      const device = serverManager.getDeviceData(req);
 
       const scanLoginData = accountManager.scanLoginData(body);
       if (scanLoginData.error) {
@@ -59,11 +55,7 @@ export const AuthController = (): void => {
     serverManager.v1,
     '/auth/create',
     async (req, body) => {
-      const device: Server.Server.Device = {
-        userAgent: req.headers['user-agent'] as string,
-        ip: req.ip as string,
-        headers: JSON.stringify(req.headers) as string,
-      };
+      const device = serverManager.getDeviceData(req);
 
       const scanCreateData = accountManager.scanCreateData(body);
       if (scanCreateData.error) {

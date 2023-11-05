@@ -108,6 +108,14 @@ class ServerManager {
       res.sendFile(path.join(__dirname, `${this._staticFolderPath}/build/index.html`));
     });
   }
+
+  getDeviceData(request: express.Request): Server.Server.Device {
+    return {
+      userAgent: request.headers['user-agent'] as string,
+      ip: request.ip as string,
+      headers: JSON.stringify(request.headers) as string,
+    };
+  }
 }
 
 export const serverManager = ServerManager.getInstance();
