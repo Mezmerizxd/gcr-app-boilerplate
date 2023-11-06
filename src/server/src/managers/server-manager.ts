@@ -113,7 +113,7 @@ class ServerManager {
     return {
       userAgent: request.headers['user-agent'] as string,
       ip: request.ip as string,
-      headers: JSON.stringify(request.headers) as string,
+      headers: '',
     };
   }
 }

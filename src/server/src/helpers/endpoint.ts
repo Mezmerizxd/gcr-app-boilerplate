@@ -20,8 +20,6 @@ export function Post<T extends keyof Server.Server.Posts>(
   version.post(url, async (req, res) => {
     logger.debug(`Endpoint | Incoming: ${url} | ${inspect(req.body, { depth: 4, colors: true })}`);
 
-    const device = serverManager.getDeviceData(req);
-
     if (requireBody && !req.body) {
       res.json({
         server: {
@@ -50,15 +48,6 @@ export function Post<T extends keyof Server.Server.Posts>(
           server: {
             success: false,
             error: session.error,
-          },
-        });
-        return;
-      }
-      if (!sessionManager.isSameDevice(session.session, device)) {
-        res.json({
-          server: {
-            success: false,
-            error: 'Device does not match',
           },
         });
         return;
@@ -112,8 +101,6 @@ export function Get<T extends keyof Server.Server.Gets>(
   version.get(url, async (req, res) => {
     logger.debug(`Endpoint | Incoming: ${url} | ${inspect(req?.body, { depth: 4, colors: true })}`);
 
-    const device = serverManager.getDeviceData(req);
-
     if (requireAuth) {
       const { authorization } = req.headers;
       if (!authorization) {
@@ -132,15 +119,6 @@ export function Get<T extends keyof Server.Server.Gets>(
           server: {
             success: false,
             error: session.error,
-          },
-        });
-        return;
-      }
-      if (!sessionManager.isSameDevice(session.session, device)) {
-        res.json({
-          server: {
-            success: false,
-            error: 'Device does not match',
           },
         });
         return;
