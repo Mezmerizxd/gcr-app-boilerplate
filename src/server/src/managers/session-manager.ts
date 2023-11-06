@@ -66,12 +66,7 @@ class SessionManager {
     const date = new Date();
 
     sessions.sessions.forEach((session) => {
-      let expired = false;
-
-      // check if session is expired
-      if (session.expires < date) {
-        expired = true;
-      }
+      const expired = this.isSessionDateExpired(session);
 
       if (expired) {
         this.expireSession(session);
@@ -80,6 +75,15 @@ class SessionManager {
     });
 
     logger.debug('[SessionManager] interval finished');
+  }
+
+  isSessionDateExpired(session: Session): boolean {
+    const date = new Date();
+    if (session.expires < date) {
+      return true;
+    }
+
+    return false;
   }
 
   async getAllSessions(): Promise<{ sessions?: Session[]; error?: string }> {
@@ -114,6 +118,12 @@ class SessionManager {
       return { error: 'no session found' };
     }
 
+    const expired = this.isSessionDateExpired(session);
+    if (expired) {
+      this.expireSession(session);
+      return { error: 'session expired' };
+    }
+
     return { session: session };
   }
 
@@ -128,6 +138,12 @@ class SessionManager {
     });
     if (!session) {
       return { error: 'no session found' };
+    }
+
+    const expired = this.isSessionDateExpired(session);
+    if (expired) {
+      this.expireSession(session);
+      return { error: 'session expired' };
     }
 
     return { session: session };
@@ -194,8 +210,6 @@ class SessionManager {
       } catch (error) {
         return { error: 'something went wrong created token' };
       }
-
-      token = null;
     }
 
     if (token) {
