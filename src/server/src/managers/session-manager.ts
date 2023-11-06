@@ -42,10 +42,10 @@ class SessionManager {
   }
 
   restart() {
+    logger.debug('[SessionManager] restarted');
+
     this.stop();
     this.start();
-
-    logger.debug('[SessionManager] restarted');
   }
 
   async interval() {
@@ -53,6 +53,7 @@ class SessionManager {
 
     let sessions = await this.getAllSessions();
     if (!sessions.sessions) {
+      logger.debug('[SessionManager] interval no sessions found');
       return;
     }
 
@@ -95,6 +96,7 @@ class SessionManager {
   async getAllSessions(): Promise<{ sessions?: Session[]; error?: string }> {
     const sessions = await this.prisma.sessions.findMany();
     if (!sessions) {
+      logger.debug('[SessionManager] getAllSessions failed to find sessions');
       return { error: 'no sessions found' };
     }
 
@@ -108,6 +110,7 @@ class SessionManager {
       },
     });
     if (!sessions) {
+      logger.debug('[SessionManager] getAllSessionsByAccountId failed to find sessions');
       return { error: 'no sessions found' };
     }
 
@@ -121,6 +124,7 @@ class SessionManager {
       },
     });
     if (!session) {
+      logger.debug('[SessionManager] getSessionByToken failed to find session');
       return { error: 'no session found' };
     }
 
@@ -143,6 +147,7 @@ class SessionManager {
       },
     });
     if (!session) {
+      logger.debug('[SessionManager] getLatestSession failed to find session');
       return { error: 'no session found' };
     }
 
@@ -188,6 +193,7 @@ class SessionManager {
       },
     });
     if (!expiredSession) {
+      logger.debug('[SessionManager] expireSession failed to expire session');
       return { error: 'no session expired' };
     }
 

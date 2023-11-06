@@ -47,10 +47,10 @@ class AccountManager {
   }
 
   restart() {
+    logger.debug('[AccountManager] restarted');
+
     this.stop();
     this.start();
-
-    logger.debug('[AccountManager] restarted');
   }
 
   async interval() {
@@ -69,6 +69,7 @@ class AccountManager {
       },
     });
     if (!accounts) {
+      logger.debug('[AccountManager] getAllAccounts no accounts found');
       return {
         error: 'No accounts found',
       };
@@ -92,6 +93,7 @@ class AccountManager {
       },
     });
     if (!account) {
+      logger.debug('[AccountManager] getAccountById no account found');
       return {
         error: 'No account found',
       };
@@ -115,6 +117,7 @@ class AccountManager {
       },
     });
     if (!account) {
+      logger.debug('[AccountManager] getAccountByUsername no account found');
       return {
         error: 'No account found',
       };
@@ -138,6 +141,7 @@ class AccountManager {
       },
     });
     if (!account) {
+      logger.debug('[AccountManager] getAccountByEmail no account found');
       return {
         error: 'No account found',
       };
@@ -165,6 +169,7 @@ class AccountManager {
       },
     });
     if (!session) {
+      logger.debug('[AccountManager] getAccountByToken no session found');
       return {
         error: 'No session found',
       };
@@ -194,6 +199,7 @@ class AccountManager {
       },
     });
     if (!session) {
+      logger.debug('[AccountManager] getProfileByToken no session found');
       return {
         error: 'No session found',
       };
@@ -222,6 +228,7 @@ class AccountManager {
       },
     });
     if (!account) {
+      logger.debug('[AccountManager] loginAccount no account found');
       return {
         error: 'No account found',
       };
