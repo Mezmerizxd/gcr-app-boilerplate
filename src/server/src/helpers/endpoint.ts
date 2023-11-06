@@ -1,7 +1,7 @@
 import * as express from 'express';
 import { logger } from './logger';
 import { inspect } from 'util';
-import { accountManager } from '../managers';
+import { accountManager, serverManager, sessionManager } from '../managers';
 
 export function Post<T extends keyof Server.Server.Posts>(
   version: express.Router,
@@ -19,6 +19,8 @@ export function Post<T extends keyof Server.Server.Posts>(
 ): void {
   version.post(url, async (req, res) => {
     logger.debug(`Endpoint | Incoming: ${url} | ${inspect(req.body, { depth: 4, colors: true })}`);
+
+    const device = serverManager.getDeviceData(req);
 
     if (requireBody && !req.body) {
       res.json({
@@ -42,7 +44,26 @@ export function Post<T extends keyof Server.Server.Posts>(
         return;
       }
 
-      const account = await accountManager.getAccountByToken(authorization);
+      const session = await sessionManager.getSessionByToken(authorization);
+      if (!session.session) {
+        res.json({
+          server: {
+            success: false,
+            error: session.error,
+          },
+        });
+        return;
+      }
+      if (!sessionManager.isSameDevice(session.session, device)) {
+        res.json({
+          server: {
+            success: false,
+            error: 'Device does not match',
+          },
+        });
+        return;
+      }
+      const account = await accountManager.getAccountById(session.session?.account_id);
       if (!account.account) {
         res.json({
           server: {
@@ -91,6 +112,8 @@ export function Get<T extends keyof Server.Server.Gets>(
   version.get(url, async (req, res) => {
     logger.debug(`Endpoint | Incoming: ${url} | ${inspect(req?.body, { depth: 4, colors: true })}`);
 
+    const device = serverManager.getDeviceData(req);
+
     if (requireAuth) {
       const { authorization } = req.headers;
       if (!authorization) {
@@ -103,7 +126,26 @@ export function Get<T extends keyof Server.Server.Gets>(
         return;
       }
 
-      const account = await accountManager.getAccountByToken(authorization);
+      const session = await sessionManager.getSessionByToken(authorization);
+      if (!session.session) {
+        res.json({
+          server: {
+            success: false,
+            error: session.error,
+          },
+        });
+        return;
+      }
+      if (!sessionManager.isSameDevice(session.session, device)) {
+        res.json({
+          server: {
+            success: false,
+            error: 'Device does not match',
+          },
+        });
+        return;
+      }
+      const account = await accountManager.getAccountById(session.session?.account_id);
       if (!account.account) {
         res.json({
           server: {

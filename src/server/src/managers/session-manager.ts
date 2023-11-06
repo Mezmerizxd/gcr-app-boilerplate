@@ -63,8 +63,6 @@ class SessionManager {
       return true;
     });
 
-    const date = new Date();
-
     sessions.sessions.forEach((session) => {
       const expired = this.isSessionDateExpired(session);
 
@@ -80,6 +78,14 @@ class SessionManager {
   isSessionDateExpired(session: Session): boolean {
     const date = new Date();
     if (session.expires < date) {
+      return true;
+    }
+
+    return false;
+  }
+
+  isSameDevice(session: Session, device: Server.Server.Device): boolean {
+    if (session.device === device) {
       return true;
     }
 
