@@ -44,7 +44,7 @@ export const Drawer = ({ title, children, isOpen, onClose, renderFooter, size = 
                         <Dialog.Title className="text-lg font-medium text-gray-300">{title}</Dialog.Title>
                         <div className="ml-3 h-7 flex items-center">
                           <button
-                            className="rounded-md text-accent-light hover:text-accent-dark focus:outline-none focus:ring-2 focus:ring-accent-light"
+                            className="rounded-md text-accent-light hover:text-accent-dark focus:outline-none focus:ring-2 focus:ring-accent-light duration-150"
                             onClick={onClose}
                           >
                             <span className="sr-only">Close panel</span>

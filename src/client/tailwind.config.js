@@ -5,13 +5,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'accent-light': '#f43f5e',
-        'accent-dark': '#e11d48',
-        background: '#1e1e1e',
-        'background-light': '#2d2d2d',
-        'background-dark': '#0f0f0f',
-        'white-light': '#f0f0f0',
-        'white-dark': '#ABABAB',
+        'accent-light': '#818cf8',
+        'accent-dark': '#6366f1',
+        background: '#1A1A28',
+        'background-light': '#212132',
+        'background-dark': '#10101A',
+        'white-light': '#F5F5F5',
+        'white-dark': '#DCDCDC',
       },
     },
   },

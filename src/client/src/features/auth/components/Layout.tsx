@@ -18,7 +18,7 @@ export const Layout = ({ children, title }: LayoutProps) => {
             <Link className="flex items-center text-white" to="/">
               <img
                 className="h-24 w-auto"
-                src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2F2.bp.blogspot.com%2F-hZUdbXMBYRg%2FWdYSu2CPO8I%2FAAAAAAAAA14%2Fhvj-2RGQKikMF_isM1x4oemjBc6l73oXwCLcBGAs%2Fs1600%2FA%252BLogo%252BDesign%252BTransparent%252BBy%252BMTCTutorials%252BYouTube.png"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1150px-React-icon.svg.png"
                 alt="Workflow"
               />
             </Link>

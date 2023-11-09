@@ -6,6 +6,7 @@ import { clsx } from 'clsx';
 
 import { useAuth } from '../../libs/auth';
 import { useAuthorization } from '../../libs/authorization';
+import { APP_NAME } from '../../constants';
 
 type SideNavigationItem = {
   name: string;
@@ -14,8 +15,6 @@ type SideNavigationItem = {
 };
 
 const SideNavigation = ({ onSelect }: { onSelect?: () => void }) => {
-  const { checkAccess } = useAuthorization();
-
   const navigation = [{ name: 'Dashboard', to: '.', icon: HomeIcon }].filter(Boolean) as SideNavigationItem[];
 
   return (
@@ -29,12 +28,12 @@ const SideNavigation = ({ onSelect }: { onSelect?: () => void }) => {
           key={item.name}
           to={item.to}
           className={clsx(
-            'text-gray-300 hover:bg-background-light hover:text-accent-light',
+            'text-gray-300 hover:bg-background-light hover:text-accent-light duration-150',
             'group flex items-center px-2 py-2 text-base font-medium rounded-md',
           )}
         >
           <item.icon
-            className={clsx('text-gray-400 group-hover:text-accent-light', 'mr-4 flex-shrink-0 h-6 w-6')}
+            className={clsx('text-gray-400 group-hover:text-accent-light duration-150', 'mr-4 flex-shrink-0 h-6 w-6')}
             aria-hidden="true"
           />
           {item.name}
@@ -102,7 +101,7 @@ const UserNavigation = () => {
                       to={item.to}
                       className={clsx(
                         active ? 'bg-background-light' : '',
-                        'block px-4 py-2 text-sm text-gray-300 hover:text-white',
+                        'block px-4 py-2 text-sm text-gray-300 hover:text-white duration-150',
                       )}
                     >
                       {item.name}
@@ -210,7 +209,7 @@ const Logo = () => {
         src="https://cdn1.iconfinder.com/data/icons/programing-development-8/24/react_logo-512.png"
         alt="Workflow"
       />
-      <span className="text-xl text-accent-light font-semibold">GCR-App-Boilerplate</span>
+      <span className="text-xl text-accent-light font-semibold">{APP_NAME}</span>
     </Link>
   );
 };

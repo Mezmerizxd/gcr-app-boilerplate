@@ -63,7 +63,7 @@ export const Notification = ({ notification: { id, type, title, message }, onDis
               </div>
               <div className="ml-4 flex-shrink-0 flex">
                 <button
-                  className="bg-background-dark rounded-md inline-flex text-accent-light hover:text-accent-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-light"
+                  className="bg-background-dark rounded-md inline-flex text-accent-light hover:text-accent-dark duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-light"
                   onClick={() => {
                     onDismiss(id);
                   }}

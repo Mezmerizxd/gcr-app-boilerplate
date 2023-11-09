@@ -45,7 +45,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         type={type}
         className={clsx(
-          'flex justify-center items-center disabled:opacity-70 disabled:cursor-not-allowed rounded-sm shadow-sm font-medium focus:outline-none hover:opacity-80',
+          'flex justify-center items-center disabled:opacity-70 disabled:cursor-not-allowed rounded-sm shadow-sm font-medium focus:outline-none hover:opacity-80 duration-150',
           variants[variant],
           sizes[size],
           className,

@@ -31,7 +31,7 @@ const Calendar = <Entry extends { id: string }>({ entries, dateField, renderCell
           return (
             <div
               key={index}
-              className="group hover:bg-background duration-75 cursor-pointer border border-opacity-10 border-gray-200 overflow-clip"
+              className="group hover:bg-background duration-150 cursor-pointer border border-opacity-10 border-gray-200 overflow-clip"
             >
               <div className="min-w-max min-h-max p-1">
                 <div className="group-hover:bg-background text-accent-light flex font-semibold">
