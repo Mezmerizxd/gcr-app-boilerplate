@@ -5,18 +5,18 @@ module.exports = () => ({
   entry: path.resolve('./src/index.ts'),
   module: {
     rules: [
-        {
-            test: /\.tsx?$/,
-            exclude: [/node_modules/, /build/],
-            loader: 'ts-loader',
-         },
+      {
+        test: /\.tsx?$/,
+        exclude: [/node_modules/, /build/],
+        loader: 'ts-loader',
+      },
     ],
   },
   externalsPresets: {
     node: true,
   },
   optimization: {
-    minimize: false,
+    minimize: true,
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],

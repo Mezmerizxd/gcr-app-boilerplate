@@ -1,3 +1,4 @@
+import React from 'react';
 import { lazyImport } from '../libs/lazyImport';
 
 const { AuthRoutes } = lazyImport(() => import('../features/auth'), 'AuthRoutes');

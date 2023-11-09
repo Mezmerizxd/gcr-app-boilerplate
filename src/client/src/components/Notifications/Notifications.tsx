@@ -1,3 +1,4 @@
+import React from 'react';
 import { useNotificationStore } from '../../stores/notifications';
 
 import { Notification } from './Notification';

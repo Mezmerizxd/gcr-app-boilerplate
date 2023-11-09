@@ -16,10 +16,11 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
+    "jsx": "react",
     "types": ["@types/node", "@types/react", "@types/react-dom"],
     "downlevelIteration": true,
     "experimentalDecorators": true
   },
-  "include": ["./src", "./types.d.ts", "../types.d.ts"]
+  "include": ["./src/**/*", "./types.d.ts", "../types.d.ts"],
+  "exclude": ["../../node_modules", "node_modules"]
 }

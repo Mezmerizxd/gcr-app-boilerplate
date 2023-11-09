@@ -1,5 +1,5 @@
+import React from 'react';
 import { useNavigate } from 'react-router';
-import { NumberWidget } from '../components/NumberWidget';
 import { ContentLayout } from '../../../components/Layout';
 import { useAuth } from '../../../libs/auth';
 
