@@ -17,6 +17,8 @@ import {
 } from 'react-icons/bi';
 import { SiExpress, SiHeadlessui, SiSocketdotio, SiVercel } from 'react-icons/si';
 import { TeckStackIcon } from '../components/TeckStackIcon';
+import { HeaderOption } from '../components/HeaderOption';
+import LandingHeader from '../../../components/Layout/LandingHeader';
 
 export const Landing = () => {
   const navigate = useNavigate();
@@ -27,6 +29,7 @@ export const Landing = () => {
       <Head description="GCR-App-Boilerplate" />
       <div className="max-w-full bg-background flex justify-center">
         <div className="w-full align-middle text-center justify-center items-center">
+          <LandingHeader />
           <h1 className="my-20 xl:text-8xl lg:text-7xl md:text-6xl sm:text-5xl text-5xl font-extrabold text-white-light">
             {APP_NAME}
           </h1>

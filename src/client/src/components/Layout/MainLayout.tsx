@@ -5,7 +5,6 @@ import { NavLink, Link } from 'react-router-dom';
 import { clsx } from 'clsx';
 
 import { useAuth } from '../../libs/auth';
-import { useAuthorization } from '../../libs/authorization';
 import { APP_NAME } from '../../constants';
 
 type SideNavigationItem = {

@@ -6,10 +6,13 @@ import { Spinner } from '../Spinner';
 const variants = {
   primary: 'bg-accent-dark text-white',
   inverse: 'bg-background-dark text-accent-dark',
+  inverse2: 'bg-background text-accent-dark border border-accent-dark/50',
+  hidden: 'bg-transparent text-white-dark',
   danger: 'bg-red-600 text-white',
 };
 
 const sizes = {
+  vrsm: 'py-1 px-2 text-sm',
   sm: 'py-2 px-4 text-sm',
   md: 'py-2 px-6 text-md',
   lg: 'py-3 px-8 text-lg',
