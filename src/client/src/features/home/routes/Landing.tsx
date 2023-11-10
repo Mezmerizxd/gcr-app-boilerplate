@@ -44,14 +44,14 @@ export const Landing = () => {
               <Button
                 className="mx-2"
                 variant="primary"
-                onClick={() => (!user.profile ? navigate('/auth/login') : navigate('/app'))}
+                onClick={() => (!user?.profile ? navigate('/auth/login') : navigate('/app'))}
               >
                 Login
               </Button>
               <Button
                 className="mx-2"
                 variant="inverse"
-                onClick={() => (!user.profile ? navigate('/auth/register') : navigate('/app'))}
+                onClick={() => (!user?.profile ? navigate('/auth/register') : navigate('/app'))}
               >
                 Register
               </Button>

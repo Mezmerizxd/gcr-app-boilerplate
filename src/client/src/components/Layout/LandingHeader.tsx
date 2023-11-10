@@ -88,7 +88,7 @@ const HeaderLayout = () => {
           </a>
           <div className="flex items-center m-auto sm:m-0 lg:order-2">
             <Button
-              onClick={() => (!user.profile ? navigate('/auth/login') : navigate('/app'))}
+              onClick={() => (!user?.profile ? navigate('/auth/login') : navigate('/app'))}
               className="mx-2"
               size="flsm"
               variant="primary"
@@ -96,7 +96,7 @@ const HeaderLayout = () => {
               Log in
             </Button>
             <Button
-              onClick={() => (!user.profile ? navigate('/auth/register') : navigate('/app'))}
+              onClick={() => (!user?.profile ? navigate('/auth/register') : navigate('/app'))}
               className="mx-2"
               variant="inverse2"
               size="flsm"
