@@ -26,7 +26,7 @@ export const Landing = () => {
 
   return (
     <>
-      <Head description="GCR-App-Boilerplate" />
+      <Head description={APP_NAME} />
       <div className="max-w-full bg-background flex justify-center">
         <div className="w-full align-middle text-center justify-center items-center">
           <LandingHeader />

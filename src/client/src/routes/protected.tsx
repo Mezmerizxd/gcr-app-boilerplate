@@ -6,7 +6,7 @@ import { MainLayout } from '../components/Layout';
 import { lazyImport } from '../libs/lazyImport';
 import { Spinner } from '../components/Elements';
 
-const { Dashboard } = lazyImport(() => import('../features/misc'), 'Dashboard');
+const { Dashboard } = lazyImport(() => import('../features/dash'), 'Dashboard');
 const { Profile } = lazyImport(() => import('../features/dash'), 'Profile');
 
 const App = () => {

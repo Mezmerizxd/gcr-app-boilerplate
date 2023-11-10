@@ -3,7 +3,7 @@ import { Dialog, Transition } from '@headlessui/react';
 import { Button } from '../Elements';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../libs/auth';
-import { HeaderOption } from '../../features/misc/components/HeaderOption';
+import { HeaderOption } from '../../features/home/components/HeaderOption';
 import { MenuAlt2Icon } from '@heroicons/react/outline';
 import { APP_NAME } from '../../constants';
 
