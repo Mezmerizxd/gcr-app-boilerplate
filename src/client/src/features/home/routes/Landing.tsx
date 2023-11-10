@@ -33,7 +33,7 @@ export const Landing = () => {
           <h1 className="my-20 xl:text-8xl lg:text-7xl md:text-6xl sm:text-5xl text-5xl font-extrabold text-white-light">
             {APP_NAME}
           </h1>
-          <div className="py-20 w-5/6 max-w-6xl m-auto">
+          <div className="py-20 lg:w-4/6 sm:w-11/12 max-w-6xl m-auto">
             <h2 className="py-5 px-5 text-4xl font-bold text-white-light">What is Google Cloud Run App Boilerplate?</h2>
             <p className="px-5 text-lg font-normal text-white-dark">
               Google Cloud Run App Boilerplate is a simple and easy-to-use template for deploying apps on Google Cloud
@@ -58,7 +58,7 @@ export const Landing = () => {
             </div>
           </div>
 
-          <div className="py-20 w-5/6 max-w-6xl m-auto">
+          <div className="py-20 lg:w-4/6 sm:w-11/12 max-w-6xl m-auto">
             <h2 className="py-5 px-5 text-4xl font-bold text-white-light">What is Google Cloud Run?</h2>
             <p className="px-5 text-lg font-normal text-white-dark">
               Google Cloud Run is a fully managed compute platform that automatically scales your stateless containers.
@@ -76,7 +76,7 @@ export const Landing = () => {
               </Button>
             </div>
 
-            <div className="py-20 w-5/6 max-w-6xl m-auto">
+            <div className="py-20 lg:w-4/6 sm:w-11/12 max-w-6xl m-auto">
               {/* The tech stack, a grid of 3 colums showing titles like React and a icon to the left */}
               <h2 className="py-5 px-5 text-4xl font-bold text-white-light">Tech Stack</h2>
               <div className="grid grid-cols-4 gap-4">
@@ -100,7 +100,7 @@ export const Landing = () => {
               </div>
             </div>
 
-            <div className="py-20 w-5/6 max-w-6xl m-auto">
+            <div className="py-20 lg:w-4/6 sm:w-11/12 max-w-6xl m-auto">
               <h2 className="py-5 px-5 text-4xl font-bold text-white-light">Google Cloud Deployment</h2>
               <p className="px-5 text-lg font-normal text-white-dark">
                 The deployment process involves building the Docker image, pushing it to Google Cloud Registry, and

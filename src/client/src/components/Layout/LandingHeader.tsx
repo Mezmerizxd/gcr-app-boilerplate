@@ -83,14 +83,14 @@ const HeaderLayout = () => {
     <div>
       <nav className="bg-background-dark border-background-dark px-4 lg:px-6 py-2.5">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-          <a href="https://zvyezda.com" className="flex items-center">
-            <span className="self-center text-xl font-semibold whitespace-nowrap">{APP_NAME}</span>
+          <a href="https://zvyezda.com" className="items-center hidden sm:inline md:inline xl:inline">
+            <span className="self-center text-1xl font-semibold whitespace-nowrap">{APP_NAME}</span>
           </a>
-          <div className="flex items-center lg:order-2">
+          <div className="flex items-center m-auto sm:m-0 lg:order-2">
             <Button
               onClick={() => (!user.profile ? navigate('/auth/login') : navigate('/app'))}
               className="mx-2"
-              size="sm"
+              size="flsm"
               variant="primary"
             >
               Log in
@@ -99,7 +99,7 @@ const HeaderLayout = () => {
               onClick={() => (!user.profile ? navigate('/auth/register') : navigate('/app'))}
               className="mx-2"
               variant="inverse2"
-              size="sm"
+              size="flsm"
             >
               Register
             </Button>
