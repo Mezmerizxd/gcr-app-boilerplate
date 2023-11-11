@@ -17,7 +17,6 @@ import {
 } from 'react-icons/bi';
 import { SiExpress, SiHeadlessui, SiSocketdotio, SiVercel } from 'react-icons/si';
 import { TeckStackIcon } from '../components/TeckStackIcon';
-import { HeaderOption } from '../components/HeaderOption';
 import LandingHeader from '../../../components/Layout/LandingHeader';
 
 export const Landing = () => {
