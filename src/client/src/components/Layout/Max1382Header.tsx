@@ -1,11 +1,10 @@
 import React from 'react';
 import { Dialog, Transition } from '@headlessui/react';
-import { Button } from '../Elements';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../libs/auth';
 import { HeaderOption } from '../../features/home/components/HeaderOption';
 import { MenuAlt2Icon } from '@heroicons/react/outline';
-import { APP_NAME } from '../../constants';
+import { Button } from '../Elements';
+
+const APP_NAME = 'Max1382';
 
 type NavigationItem = {
   name: string;
@@ -15,20 +14,34 @@ type NavigationItem = {
 const Navigation = ({ onSelect }: { onSelect?: () => void }) => {
   const navigation = [
     { name: 'Home', to: '.' },
-    { name: 'Max1382', to: '/max1382' },
+    {
+      name: 'BEFF Pages',
+      to: '.',
+    },
+    {
+      name: 'PS4 Boosts',
+      to: '.',
+    },
+    {
+      name: 'MaxCut BEFF',
+      to: '.',
+    },
+    {
+      name: 'Gender Swap',
+      to: '.',
+    },
+    {
+      name: 'Jobs',
+      to: '.',
+    },
   ].filter(Boolean) as NavigationItem[];
 
   return (
     <>
       {navigation.map((item, index) => (
-        <HeaderOption
-          key={index}
-          onClick={() => {
-            onSelect && onSelect();
-          }}
-          name={item.name}
-          href={item.to}
-        />
+        <Button size="sm" className=" bg-transparent shadow-none">
+          {item.name}
+        </Button>
       ))}
     </>
   );
@@ -52,7 +65,7 @@ const MobileHeader = ({ sidebarOpen, setSidebarOpen }: MobileSidebarProps) => {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <Dialog.Overlay className="fixed inset-0 bg-background-dark bg-opacity-75" />
+          <Dialog.Overlay className="fixed inset-0 bg-black bg-opacity-75" />
         </Transition.Child>
         <Transition.Child
           as={React.Fragment}
@@ -63,7 +76,7 @@ const MobileHeader = ({ sidebarOpen, setSidebarOpen }: MobileSidebarProps) => {
           leaveFrom="translate-x-0"
           leaveTo="-translate-x-full"
         >
-          <div className="relative flex-1 flex flex-col max-w-xs w-full bg-background-dark">
+          <div className="relative flex-1 flex flex-col max-w-xs w-full bg-[#00A600]">
             <div className="flex-1 h-0 overflow-y-auto">
               <nav className="px-2 space-y-1 mt-4">
                 <Navigation onSelect={() => setSidebarOpen(false)} />
@@ -77,39 +90,21 @@ const MobileHeader = ({ sidebarOpen, setSidebarOpen }: MobileSidebarProps) => {
   );
 };
 
-const HeaderLayout = () => {
-  const navigate = useNavigate();
-  const { user } = useAuth();
+const Max1382Header = () => {
   const [sidebarOpen, setSidebarOpen] = React.useState(false);
 
   return (
     <div>
-      <nav className="bg-background-dark border-background-dark px-4 lg:px-6 py-2.5">
+      <nav className="bg-[#00A600] border-[#00A600] px-4 lg:px-6 py-2.5">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-          <a href="https://zvyezda.com" className="items-center hidden sm:inline md:inline xl:inline">
+          <a href="https://google.com" className="items-center">
             <span className="self-center text-1xl font-semibold whitespace-nowrap">{APP_NAME}</span>
           </a>
-          <div className="flex items-center m-auto sm:m-0 lg:order-2">
-            <Button
-              onClick={() => (!user?.profile ? navigate('/auth/login') : navigate('/app'))}
-              className="mx-2"
-              size="flsm"
-              variant="primary"
-            >
-              Log in
-            </Button>
-            <Button
-              onClick={() => (!user?.profile ? navigate('/auth/register') : navigate('/app'))}
-              className="mx-2"
-              variant="inverse2"
-              size="flsm"
-            >
-              Register
-            </Button>
+          <div className="flex items-center sm:m-0 lg:order-2">
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
               type="button"
-              className="inline-flex items-center p-2 ml-1 text-sm text-white-dark rounded-lg lg:hidden hover:background-dark focus:outline-none focus:ring-2 focus:ring-background-dark"
+              className="inline-flex items-center p-2 ml-1 text-sm text-white-dark rounded-lg lg:hidden hover:bg-[#00A600] focus:outline-none focus:ring-2 focus:ring-[#00A600]"
             >
               <span className="sr-only">Open main menu</span>
               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -129,4 +124,4 @@ const HeaderLayout = () => {
   );
 };
 
-export default HeaderLayout;
+export default Max1382Header;
