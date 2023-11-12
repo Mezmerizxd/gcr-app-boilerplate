@@ -5,7 +5,6 @@ import { Head } from '../../../components/Head';
 import { useAuth } from '../../../libs/auth';
 import { APP_NAME } from '../../../constants';
 import { Button } from '../../../components/Elements';
-4;
 
 import {
   BiLogoGoogleCloud,
@@ -15,7 +14,7 @@ import {
   BiLogoTailwindCss,
   BiLogoTypescript,
 } from 'react-icons/bi';
-import { SiExpress, SiHeadlessui, SiSocketdotio, SiVercel } from 'react-icons/si';
+import { SiExpress, SiSocketdotio, SiVercel } from 'react-icons/si';
 import { TeckStackIcon } from '../components/TeckStackIcon';
 import LandingHeader from '../../../components/Layout/LandingHeader';
 
@@ -74,57 +73,56 @@ export const Landing = () => {
                 Learn More
               </Button>
             </div>
+          </div>
 
-            <div className="py-20 lg:w-4/6 sm:w-11/12 max-w-6xl m-auto">
-              {/* The tech stack, a grid of 3 colums showing titles like React and a icon to the left */}
-              <h2 className="py-5 px-5 text-4xl font-bold text-white-light">Tech Stack</h2>
-              <div className="grid grid-cols-4 gap-4">
-                <TeckStackIcon title="NodeJs" icon={BiLogoNodejs} href="https://nodejs.org/en/docs" />
-                <TeckStackIcon
-                  title="PostgreSQL"
-                  icon={BiLogoPostgresql}
-                  href="https://www.postgresql.org/docs/current/index.html"
-                />
-                <TeckStackIcon title="Express" icon={SiExpress} href="https://expressjs.com/" />
-                <TeckStackIcon title="Socket.io" icon={SiSocketdotio} href="https://socket.io/docs/v4/" />
-                <TeckStackIcon title="TypeScript" icon={BiLogoTypescript} href="https://www.typescriptlang.org/docs/" />
-                <TeckStackIcon title="React" icon={BiLogoReact} href="https://react.dev/learn" />
-                <TeckStackIcon
-                  title="Tailwind CSS"
-                  icon={BiLogoTailwindCss}
-                  href="https://tailwindcss.com/docs/installation"
-                />
-                <TeckStackIcon title="Vercel" icon={SiVercel} href="https://vercel.com/docs" />
-                <TeckStackIcon title="Google Cloud" icon={BiLogoGoogleCloud} href="https://cloud.google.com/?hl=en" />
-              </div>
+          <div className="py-20 lg:w-4/6 sm:w-10/12 max-w-6xl m-auto">
+            <h2 className="py-5 px-5 text-4xl font-bold text-white-light">Tech Stack</h2>
+            <div className="grid grid-cols-3 lg:grid-cols-4 gap-4">
+              <TeckStackIcon title="NodeJs" icon={BiLogoNodejs} href="https://nodejs.org/en/docs" />
+              <TeckStackIcon
+                title="PostgreSQL"
+                icon={BiLogoPostgresql}
+                href="https://www.postgresql.org/docs/current/index.html"
+              />
+              <TeckStackIcon title="Express" icon={SiExpress} href="https://expressjs.com/" />
+              <TeckStackIcon title="Socket.io" icon={SiSocketdotio} href="https://socket.io/docs/v4/" />
+              <TeckStackIcon title="TypeScript" icon={BiLogoTypescript} href="https://www.typescriptlang.org/docs/" />
+              <TeckStackIcon title="React" icon={BiLogoReact} href="https://react.dev/learn" />
+              <TeckStackIcon
+                title="Tailwind CSS"
+                icon={BiLogoTailwindCss}
+                href="https://tailwindcss.com/docs/installation"
+              />
+              <TeckStackIcon title="Vercel" icon={SiVercel} href="https://vercel.com/docs" />
+              <TeckStackIcon title="Google Cloud" icon={BiLogoGoogleCloud} href="https://cloud.google.com/?hl=en" />
             </div>
+          </div>
 
-            <div className="py-20 lg:w-4/6 sm:w-11/12 max-w-6xl m-auto">
-              <h2 className="py-5 px-5 text-4xl font-bold text-white-light">Google Cloud Deployment</h2>
-              <p className="px-5 text-lg font-normal text-white-dark">
-                The deployment process involves building the Docker image, pushing it to Google Cloud Registry, and
-                deploying it to Google Cloud Run. Find the deployment script in the project root{' '}
-                <span
-                  className="text-accent-light cursor-pointer hover:text-accent-dark duration-150"
-                  onClick={() => {
-                    window.open('https://github.com/Mezmerizxd/gcr-app-boilerplate/blob/main/deploy.js', '_blank');
-                  }}
-                >
-                  deploy.js
-                </span>
-                . Before deploying, ensure you configure the .env file according to your requirements. Please be aware
-                that Google Cloud Run incurs costs; you can review the pricing details{' '}
-                <span
-                  className="text-accent-light cursor-pointer hover:text-accent-dark duration-150"
-                  onClick={() => {
-                    window.open('https://cloud.google.com/run/pricing', '_blank');
-                  }}
-                >
-                  here
-                </span>
-                .
-              </p>
-            </div>
+          <div className="py-20 lg:w-4/6 sm:w-11/12 max-w-6xl m-auto">
+            <h2 className="py-5 px-5 text-4xl font-bold text-white-light">Google Cloud Deployment</h2>
+            <p className="px-5 text-lg font-normal text-white-dark">
+              The deployment process involves building the Docker image, pushing it to Google Cloud Registry, and
+              deploying it to Google Cloud Run. Find the deployment script in the project root{' '}
+              <span
+                className="text-accent-light cursor-pointer hover:text-accent-dark duration-150"
+                onClick={() => {
+                  window.open('https://github.com/Mezmerizxd/gcr-app-boilerplate/blob/main/deploy.js', '_blank');
+                }}
+              >
+                deploy.js
+              </span>
+              . Before deploying, ensure you configure the .env file according to your requirements. Please be aware
+              that Google Cloud Run incurs costs; you can review the pricing details{' '}
+              <span
+                className="text-accent-light cursor-pointer hover:text-accent-dark duration-150"
+                onClick={() => {
+                  window.open('https://cloud.google.com/run/pricing', '_blank');
+                }}
+              >
+                here
+              </span>
+              .
+            </p>
           </div>
 
           <footer className="max-w-full rounded-lg shadow bg-background-dark">

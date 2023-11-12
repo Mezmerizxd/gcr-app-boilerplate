@@ -10,12 +10,25 @@ import { APP_NAME } from '../../constants';
 type NavigationItem = {
   name: string;
   to: string;
+  customUrl?: boolean;
 };
 
 const Navigation = ({ onSelect }: { onSelect?: () => void }) => {
   const navigation = [
-    { name: 'Home', to: '.' },
-    { name: 'Max1382', to: '/max1382' },
+    {
+      name: 'Home',
+      to: '.',
+    },
+    {
+      name: 'My Website',
+      to: 'https://zvyezda.com',
+      customUrl: true,
+    },
+    {
+      name: 'Radiance Project',
+      to: 'https://radiance-mu.vercel.app/',
+      customUrl: true,
+    },
   ].filter(Boolean) as NavigationItem[];
 
   return (
@@ -28,6 +41,7 @@ const Navigation = ({ onSelect }: { onSelect?: () => void }) => {
           }}
           name={item.name}
           href={item.to}
+          customUrl={item.customUrl}
         />
       ))}
     </>

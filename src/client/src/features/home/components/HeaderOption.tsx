@@ -2,7 +2,17 @@ import React from 'react';
 import { Button } from '../../../components/Elements';
 import { useNavigate } from 'react-router-dom';
 
-export const HeaderOption = ({ name, href, onClick }: { name: string; href?: string; onClick?: () => void }) => {
+export const HeaderOption = ({
+  name,
+  href,
+  onClick,
+  customUrl,
+}: {
+  name: string;
+  href?: string;
+  onClick?: () => void;
+  customUrl?: boolean;
+}) => {
   const navigate = useNavigate();
 
   return (
@@ -10,6 +20,10 @@ export const HeaderOption = ({ name, href, onClick }: { name: string; href?: str
       size="sm"
       variant="hidden"
       onClick={() => {
+        if (customUrl) {
+          window.open(href, '_blank');
+          return;
+        }
         navigate(href);
         onClick();
       }}
