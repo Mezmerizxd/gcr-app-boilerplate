@@ -100,7 +100,7 @@ const HeaderLayout = () => {
     <div>
       <nav className="bg-background-dark border-background-dark px-4 lg:px-6 py-2.5">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-          <a href="https://zvyezda.com" className="items-center hidden sm:inline md:inline xl:inline">
+          <a href="https://boilerplate.zvyezda.com" className="items-center hidden sm:inline md:inline xl:inline">
             <span className="self-center text-1xl font-semibold whitespace-nowrap">{APP_NAME}</span>
           </a>
           <div className="flex items-center m-auto sm:m-0 lg:order-2">
