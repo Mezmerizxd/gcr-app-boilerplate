@@ -9,7 +9,7 @@ type HeadProps = {
 
 export const Head = ({ title = '', description = '' }: HeadProps = {}) => {
   return (
-    <Helmet title={title ? `${title} | ${APP_NAME}` : undefined} defaultTitle="GCR-App-Boilerplate">
+    <Helmet title={title ? `${title} | ${APP_NAME}` : undefined} defaultTitle={APP_NAME}>
       <meta name="description" content={description} />
     </Helmet>
   );

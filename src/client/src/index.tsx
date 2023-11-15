@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom/client';
 import React from 'react';
 import { AppRoutes } from './routes';
-import { engine } from './libs/engine';
+import { server } from './server';
 import { AppProvider } from './providers/app';
 
 import './index.css';
@@ -9,7 +9,7 @@ import './index.css';
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 async function main() {
-  await engine.start();
+  await server.start();
 
   root.render(
     <AppProvider>

@@ -1,6 +1,6 @@
 import * as rqa from 'react-query-auth';
 import React from 'react';
-import { engine } from './engine';
+import { server } from '../server';
 import storage from './storage';
 import { Spinner } from '../components/Elements';
 
@@ -11,14 +11,14 @@ interface AuthConfig {
 }
 
 async function loadUser(): Promise<AuthConfig> {
-  if (engine.profile !== null) {
+  if (server.profile !== null) {
     return {
-      account: engine.account,
-      profile: engine.profile,
+      account: server.account,
+      profile: server.profile,
       error: null,
     };
   } else if (storage.getToken() !== null) {
-    const profile = await engine.GetProfile();
+    const profile = await server.GetProfile();
     if (!profile.data) {
       return {
         account: null,
@@ -27,7 +27,7 @@ async function loadUser(): Promise<AuthConfig> {
       };
     }
     return {
-      account: { ...engine.account, ...profile.data },
+      account: { ...server.account, ...profile.data },
       profile: profile.data,
       error: null,
     };
@@ -36,7 +36,7 @@ async function loadUser(): Promise<AuthConfig> {
 }
 
 async function loginFn(data: LoginAccountData): Promise<AuthConfig> {
-  const account = await engine.Login(data);
+  const account = await server.Login(data);
   if (!account.data) {
     return {
       account: null,
@@ -53,7 +53,7 @@ async function loginFn(data: LoginAccountData): Promise<AuthConfig> {
 }
 
 async function registerFn(data: CreateAccountData): Promise<AuthConfig> {
-  const account = await engine.Create(data);
+  const account = await server.Create(data);
   if (!account.data) {
     return {
       account: null,

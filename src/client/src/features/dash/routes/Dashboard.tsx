@@ -4,7 +4,6 @@ import { ContentLayout } from '../../../components/Layout';
 import { useAuth } from '../../../libs/auth';
 
 export const Dashboard = () => {
-  const navigate = useNavigate();
   const { user } = useAuth();
 
   return (

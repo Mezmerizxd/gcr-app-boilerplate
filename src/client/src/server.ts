@@ -1,13 +1,14 @@
-import storage from './storage';
+import { DEVELOPMENT_SERVER_URL } from './constants';
+import storage from './libs/storage';
 
-class Engine {
-  protected static instance: Engine;
+class Server {
+  protected static instance: Server;
 
-  static getInstance(): Engine {
-    if (!Engine.instance) {
-      Engine.instance = new Engine();
+  static getInstance(): Server {
+    if (!Server.instance) {
+      Server.instance = new Server();
     }
-    return Engine.instance;
+    return Server.instance;
   }
 
   serverUrl: string;
@@ -168,11 +169,11 @@ class Engine {
     const { port, origin } = window.location;
 
     if (port === '8080') {
-      return 'http://localhost:4000/api/v1';
+      return DEVELOPMENT_SERVER_URL;
     } else {
       return `${origin}/api/v1`;
     }
   }
 }
 
-export const engine = Engine.getInstance();
+export const server = Server.getInstance();
