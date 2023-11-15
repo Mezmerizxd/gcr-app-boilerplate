@@ -33,14 +33,28 @@ interface Account {
   updated_at: Date;
 }
 
-declare namespace Server {}
+declare namespace Server {
+  type MetricsData = {
+    platform: string;
+    process_uptime: number;
+    uptime: number;
+    cpu_usage: number;
+    cpu_count: number;
+    cpu_free: number;
+    mem_usage: number;
+    mem_total: number;
+    mem_free: number;
+  };
+}
 
 declare namespace Server.Socket {
   type ClientToServer = {
     testCTS: (data: { message: string }) => void;
+    getMetrics: () => void;
   };
   type ServerToClient = {
     testSTC: (data: { message: string }) => void;
+    sendMetrics: (data: { metrics: Server.MetricsData }) => any;
   };
 }
 

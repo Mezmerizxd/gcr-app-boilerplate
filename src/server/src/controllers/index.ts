@@ -5,6 +5,7 @@ import { Get } from '../helpers/endpoint';
 import { TestController } from './test-controller';
 import { AuthController } from './auth-controller';
 import { AccountController } from './account-controller';
+import { MetricsController } from './metrics-controller';
 
 export default (): void => {
   Get(
@@ -33,4 +34,5 @@ export default (): void => {
   TestController();
   AuthController();
   AccountController();
+  MetricsController();
 };
