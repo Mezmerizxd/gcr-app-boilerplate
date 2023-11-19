@@ -89,6 +89,9 @@ declare namespace Server.Server {
 
     /* ACCOUNT */
     ['/account/profile']: () => Profile | null;
+
+    /* SPOTIFY */
+    ['/spotify/test']: () => any;
   };
 
   type Patches = {};

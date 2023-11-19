@@ -1,6 +1,6 @@
-import * as colors from 'colors';
-import * as fs from 'fs';
-import * as express from 'express';
+import colors from 'colors';
+import fs from 'fs';
+import express from 'express';
 import { Socket } from 'socket.io';
 
 class Logger {

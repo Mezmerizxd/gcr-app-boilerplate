@@ -9,7 +9,8 @@
     "outDir": "./build",
     "types": ["@types/node"],
     "skipLibCheck": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "esModuleInterop": true
   },
   "ts-node": {
     "files": true

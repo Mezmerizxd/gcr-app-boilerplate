@@ -9,6 +9,9 @@ declare global {
       PROD_SOCKET_HOST: string;
       PROD_SERVER_HOST: string;
       POSTGRES_URL: string;
+      SPOTIFY_CLIENT_ID: string;
+      SPOTIFY_CLIENT_SECRET: string;
+      SPOTIFY_REDIRECT_URI: string;
     }
   }
 }

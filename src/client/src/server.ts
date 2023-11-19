@@ -83,6 +83,13 @@ class Server {
     return profile;
   }
 
+  public async SpotifyTest(): Promise<{
+    server: Server.Server.BaseResponse;
+    data: ReturnType<Server.Server.Gets['/spotify/test']> | null;
+  }> {
+    return await this.Get('/spotify/test', true);
+  }
+
   private async Patch<T extends keyof Server.Server.Patches>(
     event: T,
     authorization: boolean,

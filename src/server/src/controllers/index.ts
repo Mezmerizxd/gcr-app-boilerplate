@@ -6,6 +6,7 @@ import { TestController } from './test-controller';
 import { AuthController } from './auth-controller';
 import { AccountController } from './account-controller';
 import { MetricsController } from './metrics-controller';
+import { SpotifyController } from './spotify-controller';
 
 export default (): void => {
   Get(
@@ -35,4 +36,5 @@ export default (): void => {
   AuthController();
   AccountController();
   MetricsController();
+  SpotifyController();
 };
