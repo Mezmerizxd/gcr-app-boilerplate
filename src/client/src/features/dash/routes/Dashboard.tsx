@@ -80,15 +80,6 @@ export const Dashboard = () => {
           <p>Uptime: {metrics?.uptime || 'N/A'}</p>
         </div>
       </div>
-
-      <Button
-        onClick={async () => {
-          const test = await server.SpotifyTest();
-          console.log(test);
-        }}
-      >
-        Spotify Test
-      </Button>
     </ContentLayout>
   );
 };

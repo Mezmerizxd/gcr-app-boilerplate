@@ -6,7 +6,6 @@ import * as bodyParser from 'body-parser';
 import * as path from 'path';
 import { logger } from '../helpers/logger';
 import { PrismaClient } from '@prisma/client';
-import SpotifyWebApi from 'spotify-web-api-node';
 
 class ServerManager {
   protected static instance: ServerManager;
@@ -23,7 +22,6 @@ class ServerManager {
   _io: sckio.Server;
   express: express.Application;
   socket: sckio.Namespace<Server.Socket.ClientToServer & Server.Socket.ServerToClient>;
-  spotifyApi: SpotifyWebApi;
 
   v1: express.Router;
   prisma: PrismaClient;
@@ -56,18 +54,6 @@ class ServerManager {
     }
 
     this.prisma = new PrismaClient();
-
-    if (process.env.SPOTIFY_CLIENT_ID || process.env.SPOTIFY_CLIENT_SECRET || process.env.SPOTIFY_REDIRECT_URI) {
-      this.spotifyApi = new SpotifyWebApi({
-        clientId: process.env.SPOTIFY_CLIENT_ID,
-        clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-        redirectUri: process.env.SPOTIFY_REDIRECT_URI,
-      });
-
-      if (this.spotifyApi) {
-        logger.info('Spotify API initialized');
-      }
-    }
 
     this.socket = this._io.of('/ws').use((socket: sckio.Socket, next: (err?: Error) => void) => {
       logger.incomingSocket(socket);
