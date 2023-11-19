@@ -1,6 +1,6 @@
-import { serverManager, accountManager } from '../managers';
+import { serverManager, accountManager, authManager } from '../managers';
 import { logger } from '../helpers/logger';
-import { Post } from '../helpers/endpoint';
+import { Post } from '../helpers/artemis';
 
 export const AuthController = (): void => {
   /**
@@ -13,7 +13,7 @@ export const AuthController = (): void => {
   Post(
     serverManager.v1,
     '/auth/login',
-    async (req, body) => {
+    async (req, res, body) => {
       const device = serverManager.getDeviceData(req);
 
       const scanLoginData = accountManager.scanLoginData(body);
@@ -27,7 +27,7 @@ export const AuthController = (): void => {
       }
 
       const login = await accountManager.loginAccount(body, JSON.stringify(device));
-      if (login.error) {
+      if (login.error || !login.account) {
         return {
           server: {
             success: false,
@@ -36,8 +36,14 @@ export const AuthController = (): void => {
         };
       }
 
+      const cookie = authManager.sign(login.account);
+      res.cookie('token', cookie);
+
       return {
-        data: login.account,
+        data: {
+          account: login.account,
+          token: cookie,
+        },
       };
     },
     false,
@@ -54,7 +60,7 @@ export const AuthController = (): void => {
   Post(
     serverManager.v1,
     '/auth/create',
-    async (req, body) => {
+    async (req, res, body) => {
       const device = serverManager.getDeviceData(req);
 
       const scanCreateData = accountManager.scanCreateData(body);
@@ -68,7 +74,7 @@ export const AuthController = (): void => {
       }
 
       const create = await accountManager.createAccount(body, JSON.stringify(device));
-      if (create.error) {
+      if (create.error || !create.account) {
         return {
           server: {
             success: false,
@@ -77,8 +83,14 @@ export const AuthController = (): void => {
         };
       }
 
+      const cookie = authManager.sign(create.account);
+      res.cookie('token', cookie);
+
       return {
-        data: create.account,
+        data: {
+          account: create.account,
+          token: cookie,
+        },
       };
     },
     false,

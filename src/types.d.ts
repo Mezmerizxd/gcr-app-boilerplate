@@ -4,16 +4,6 @@ type TestingDatabaseAndController = {
   created_at: any;
 };
 
-interface Session {
-  id: string;
-  token: string;
-  expires: Date;
-  expired: boolean;
-  device: string;
-  account_id: string;
-  created_at: Date;
-}
-
 interface Profile {
   id: string;
   username: string;
@@ -28,7 +18,6 @@ interface Account {
   avatar_url?: string | null;
   email: string;
   password: string;
-  sessions: Session[];
   created_at: Date;
   updated_at: Date;
 }
@@ -76,8 +65,14 @@ declare namespace Server.Server {
     };
 
     /* AUTH */
-    ['/auth/login']: (data: LoginAccountData) => Account | null;
-    ['/auth/create']: (data: CreateAccountData) => Account | null;
+    ['/auth/login']: (data: LoginAccountData) => {
+      account: Account;
+      token: string;
+    } | null;
+    ['/auth/create']: (data: CreateAccountData) => {
+      account: Account;
+      token: string;
+    } | null;
   };
 
   type Gets = {

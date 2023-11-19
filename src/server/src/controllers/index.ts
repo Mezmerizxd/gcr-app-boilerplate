@@ -1,6 +1,6 @@
 import { logger } from '../helpers/logger';
 import { serverManager } from '../managers/server-manager';
-import { Get } from '../helpers/endpoint';
+import { Get } from '../helpers/artemis';
 
 import { TestController } from './test-controller';
 import { AuthController } from './auth-controller';

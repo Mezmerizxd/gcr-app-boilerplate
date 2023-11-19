@@ -1,6 +1,6 @@
 import { serverManager, accountManager } from '../managers';
 import { logger } from '../helpers/logger';
-import { Get } from '../helpers/endpoint';
+import { Get } from '../helpers/artemis';
 
 export const AccountController = (): void => {
   /**
@@ -13,7 +13,7 @@ export const AccountController = (): void => {
   Get(
     serverManager.v1,
     '/account/profile',
-    async (_, account) => {
+    async (_, __, account) => {
       if (!account) {
         return {
           server: {

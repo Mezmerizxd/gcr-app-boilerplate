@@ -45,9 +45,11 @@ async function loginFn(data: LoginAccountData): Promise<AuthConfig> {
     };
   }
 
+  storage.setToken(account.data.token);
+
   return {
-    account: account.data,
-    profile: { ...account.data },
+    account: account.data.account,
+    profile: { ...account.data.account },
     error: null,
   };
 }
@@ -62,9 +64,11 @@ async function registerFn(data: CreateAccountData): Promise<AuthConfig> {
     };
   }
 
+  storage.setToken(account.data.token);
+
   return {
-    account: account.data,
-    profile: { ...account.data },
+    account: account.data.account,
+    profile: { ...account.data.account },
     error: null,
   };
 }

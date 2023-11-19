@@ -6,6 +6,7 @@ import * as bodyParser from 'body-parser';
 import * as path from 'path';
 import { logger } from '../helpers/logger';
 import { PrismaClient } from '@prisma/client';
+import cookieParser from 'cookie-parser';
 
 class ServerManager {
   protected static instance: ServerManager;
@@ -86,6 +87,7 @@ class ServerManager {
     });
     this.express.use(cors());
     this.express.use(bodyParser.json());
+    this.express.use(cookieParser());
     this.express.use(
       bodyParser.json({
         limit: '50mb',

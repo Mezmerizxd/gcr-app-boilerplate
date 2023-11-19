@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { serverManager, sessionManager } from './';
+import { serverManager } from './';
 import * as crypto from 'crypto';
 import { logger } from '../helpers/logger';
 
@@ -63,11 +63,7 @@ class AccountManager {
     accounts?: Account[];
     error?: string;
   }> {
-    const accounts = await this.prisma.accounts.findMany({
-      include: {
-        sessions: true,
-      },
-    });
+    const accounts = await this.prisma.accounts.findMany({});
     if (!accounts) {
       logger.debug('[AccountManager] getAllAccounts no accounts found');
       return {
@@ -87,9 +83,6 @@ class AccountManager {
     const account = await this.prisma.accounts.findUnique({
       where: {
         id,
-      },
-      include: {
-        sessions: true,
       },
     });
     if (!account) {
@@ -112,9 +105,6 @@ class AccountManager {
       where: {
         username,
       },
-      include: {
-        sessions: true,
-      },
     });
     if (!account) {
       logger.debug('[AccountManager] getAccountByUsername no account found');
@@ -136,9 +126,6 @@ class AccountManager {
       where: {
         email,
       },
-      include: {
-        sessions: true,
-      },
     });
     if (!account) {
       logger.debug('[AccountManager] getAccountByEmail no account found');
@@ -149,66 +136,6 @@ class AccountManager {
 
     return {
       account,
-    };
-  }
-
-  async getAccountByToken(token: string): Promise<{
-    account?: Account;
-    error?: string;
-  }> {
-    const session = await this.prisma.sessions.findUnique({
-      where: {
-        token,
-      },
-      include: {
-        account: {
-          include: {
-            sessions: true,
-          },
-        },
-      },
-    });
-    if (!session) {
-      logger.debug('[AccountManager] getAccountByToken no session found');
-      return {
-        error: 'No session found',
-      };
-    }
-
-    return {
-      account: {
-        ...session.account,
-      },
-    };
-  }
-
-  async getProfileByToken(token: string): Promise<{
-    profile?: Profile;
-    error?: string;
-  }> {
-    const session = await this.prisma.sessions.findUnique({
-      where: {
-        token,
-      },
-      include: {
-        account: {
-          include: {
-            sessions: true,
-          },
-        },
-      },
-    });
-    if (!session) {
-      logger.debug('[AccountManager] getProfileByToken no session found');
-      return {
-        error: 'No session found',
-      };
-    }
-
-    return {
-      profile: {
-        ...session.account,
-      },
     };
   }
 
@@ -223,9 +150,6 @@ class AccountManager {
       where: {
         email: data.email,
       },
-      include: {
-        sessions: true,
-      },
     });
     if (!account) {
       logger.debug('[AccountManager] loginAccount no account found');
@@ -234,30 +158,8 @@ class AccountManager {
       };
     }
 
-    const existingSession = account.sessions.find((session) => {
-      const storedDevice: Server.Server.Device = JSON.parse(session.device);
-      const currentDevice: Server.Server.Device = JSON.parse(device);
-      return storedDevice.userAgent === currentDevice.userAgent;
-    });
-
-    if (existingSession) {
-      return {
-        account: account,
-      };
-    }
-
-    const session = await sessionManager.createSession(account.id, device);
-    if (!session.session) {
-      return {
-        error: session?.error || 'Failed to create session',
-      };
-    }
-
     return {
-      account: {
-        ...account,
-        sessions: [...account.sessions, session.session],
-      },
+      account: account,
     };
   }
 
@@ -302,18 +204,8 @@ class AccountManager {
       };
     }
 
-    const session = await sessionManager.createSession(account.id, device);
-    if (!session.session) {
-      return {
-        error: session?.error || 'Failed to create session',
-      };
-    }
-
     return {
-      account: {
-        ...account,
-        sessions: [session.session],
-      },
+      account: account,
     };
   }
 

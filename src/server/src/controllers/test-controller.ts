@@ -1,6 +1,6 @@
 import { serverManager } from '../managers';
 import { logger } from '../helpers/logger';
-import { Post, Get } from '../helpers/endpoint';
+import { Post, Get } from '../helpers/artemis';
 
 export const TestController = (): void => {
   serverManager.socket.on('connection', (s) => {

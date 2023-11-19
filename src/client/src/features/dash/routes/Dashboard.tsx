@@ -21,8 +21,8 @@ export const Dashboard = () => {
         rejectUnauthorized: false,
         reconnectionAttempts: 0,
         autoConnect: false,
-        extraHeaders: {
-          Authorization: storage.getToken(),
+        auth: {
+          token: storage.getToken(),
         },
       },
     );

@@ -1,28 +1,21 @@
-import { serverManager, metricsManager, sessionManager } from '../managers';
+import { serverManager, metricsManager, authManager } from '../managers';
 import { logger } from '../helpers/logger';
 
 export const MetricsController = (): void => {
   serverManager.socket.on('connection', async (s) => {
     logger.debug('[MetricsController] Connection to socket established:', s.id);
 
-    const auth = s.handshake.headers.authorization;
+    const auth = s.handshake.auth['token'];
     if (!auth) {
-      logger.debug('[MetricsController] No authorization header found');
+      logger.debug('[MetricsController] No cookie header found');
       return;
     }
 
-    const session = await sessionManager.getSessionByToken(auth);
-    if (session.error) {
-      logger.debug('[MetricsController] No session found,', session.error);
+    const account = authManager.verify(auth);
+    if (!account) {
+      logger.debug('[MetricsController] No account found');
       return;
     }
-
-    logger.debug(
-      '[MetricsController] Session found, id:',
-      session.session?.id,
-      'accountId:',
-      session.session?.account_id,
-    );
 
     s.on('getMetrics', () => {
       logger.debug('[MetricsController] getMetrics');

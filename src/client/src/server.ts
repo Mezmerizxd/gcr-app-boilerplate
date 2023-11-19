@@ -23,8 +23,6 @@ class Server {
 
   public async start() {
     this.socketUrl = (await this.GetSocketDetails()).data?.socketUrl;
-
-    const token = storage.getToken();
   }
 
   public async GetSocketDetails(): Promise<{
@@ -40,15 +38,10 @@ class Server {
   }> {
     const account = await this.Post('/auth/login', false, body);
     if (account.data) {
-      this.account = account.data;
+      this.account = account.data.account;
       this.profile = {
-        ...account.data,
+        ...account.data.account,
       };
-      account.data.sessions.forEach((session) => {
-        if (session.expired === false) {
-          storage.setToken(session.token);
-        }
-      });
     }
     return account;
   }
@@ -59,15 +52,10 @@ class Server {
   }> {
     const account = await this.Post('/auth/create', false, body);
     if (account.data) {
-      this.account = account.data;
+      this.account = account.data.account;
       this.profile = {
-        ...account.data,
+        ...account.data.account,
       };
-      account.data.sessions.forEach((session) => {
-        if (session.expired === false) {
-          storage.setToken(session.token);
-        }
-      });
     }
     return account;
   }

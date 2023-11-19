@@ -1,12 +1,12 @@
 import { logger } from './helpers/logger';
-import { accountManager, serverManager, sessionManager, metricsManager } from './managers';
+import { accountManager, serverManager, metricsManager, authManager } from './managers';
 import Controllers from './controllers';
 
 logger.start();
 
 Controllers();
 
+authManager.start();
 serverManager.start();
-sessionManager.start();
 accountManager.start();
 metricsManager.start();
