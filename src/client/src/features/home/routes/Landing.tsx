@@ -22,7 +22,7 @@ export const Landing = () => {
   const { user } = useAuth();
 
   return (
-    <HomeLayout title="Test">
+    <HomeLayout title="Home">
       <h1 className="my-20 xl:text-8xl lg:text-7xl md:text-6xl sm:text-5xl text-5xl font-extrabold text-white-light">
         {APP_NAME}
       </h1>
