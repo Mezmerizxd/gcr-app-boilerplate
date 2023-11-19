@@ -91,7 +91,7 @@ const MobileHeader = ({ sidebarOpen, setSidebarOpen }: MobileSidebarProps) => {
   );
 };
 
-const HeaderLayout = () => {
+const HomeHeader = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const [sidebarOpen, setSidebarOpen] = React.useState(false);
@@ -143,4 +143,4 @@ const HeaderLayout = () => {
   );
 };
 
-export default HeaderLayout;
+export default HomeHeader;
