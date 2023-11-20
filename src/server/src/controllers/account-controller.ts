@@ -7,8 +7,6 @@ export const AccountController = (): void => {
    * @api {get} /account/profile
    * @apiName Profile
    * @apiGroup Account
-   * @apiVersion 1.0.0
-   * @apiCurl curl -X GET -H "Content-Type: application/json" -H "Authorization: abc123"  http://localhost:4000/api/v1/account/profile
    */
   Get(
     serverManager.v1,

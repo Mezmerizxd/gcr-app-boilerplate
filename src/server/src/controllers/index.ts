@@ -2,12 +2,16 @@ import { logger } from '../helpers/logger';
 import { serverManager } from '../managers/server-manager';
 import { Get } from '../helpers/artemis';
 
-import { TestController } from './test-controller';
 import { AuthController } from './auth-controller';
 import { AccountController } from './account-controller';
 import { MetricsController } from './metrics-controller';
 
 export default (): void => {
+  /**
+   * @api {get} /get-socket-details
+   * @apiName GetSocketDetails
+   * @apiGroup v1
+   */
   Get(
     serverManager.v1,
     '/get-socket-details',
@@ -31,7 +35,6 @@ export default (): void => {
 
   logger.loadedController('index');
 
-  TestController();
   AuthController();
   AccountController();
   MetricsController();

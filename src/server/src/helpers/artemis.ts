@@ -3,6 +3,17 @@ import { logger } from './logger';
 import { inspect } from 'util';
 import { accountManager, authManager } from '../managers';
 
+/**
+ * @param res - The Express response object to send the HTTP response.
+ * @param url - The URL associated with the response.
+ * @param result - An object containing server and data properties.
+ *   @property {Server.Server.BaseResponse} server - Server response object with a success property.
+ *   @property {any} data - Additional data to be included in the response.
+ * @returns {void}
+ * @description Handles the response by checking the success property in the server object,
+ *              setting it to true if not present, logging the outgoing endpoint and response,
+ *              and sending the JSON response using the Express response object.
+ */
 function handleResponse(
   res: express.Response,
   url: string,
@@ -19,6 +30,20 @@ function handleResponse(
   res.json(result);
 }
 
+/**
+ * @param version - The Express router version to handle the POST request.
+ * @param url - The URL associated with the POST request.
+ * @param callback - The callback function to be executed on handling the POST request.
+ *   @param req - The Express request object.
+ *   @param res - The Express response object.
+ *   @param body - The request body of type Parameters<Server.Server.Posts[T]>[0].
+ *   @param account - An optional parameter representing user account information.
+ * @param requireAuth - A boolean indicating whether authentication is required (default: false).
+ * @param requireBody - A boolean indicating whether a request body is required (default: false).
+ * @returns {void}
+ * @description Handles POST requests, performs authentication if required, and executes the callback function,
+ *              logging the incoming endpoint and request body, and sending the JSON response using the handleResponse function.
+ */
 export function Post<T extends keyof Server.Server.Posts>(
   version: express.Router,
   url: T,
@@ -92,6 +117,18 @@ export function Post<T extends keyof Server.Server.Posts>(
   }
 }
 
+/**
+ * @param version - The Express router version to handle the GET request.
+ * @param url - The URL associated with the GET request.
+ * @param callback - The callback function to be executed on handling the GET request.
+ *   @param req - The Express request object.
+ *   @param res - The Express response object.
+ *   @param account - An optional parameter representing user account information.
+ * @param requireAuth - A boolean indicating whether authentication is required (default: false).
+ * @returns {void}
+ * @description Handles GET requests, performs authentication if required, and executes the callback function,
+ *              logging the incoming endpoint and request body, and sending the JSON response using the handleResponse function.
+ */
 export function Get<T extends keyof Server.Server.Gets>(
   version: express.Router,
   url: T,

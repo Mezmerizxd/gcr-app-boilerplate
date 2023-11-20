@@ -7,8 +7,6 @@ export const AuthController = (): void => {
    * @api {post} /auth/login
    * @apiName Login
    * @apiGroup Auth
-   * @apiVersion 1.0.0
-   * @apiCurl curl -X POST -H "Content-Type: application/json" -d '{"email":"test@test.com","password":"test"}' http://localhost:4000/api/v1/auth/login
    */
   Post(
     serverManager.v1,
@@ -54,8 +52,6 @@ export const AuthController = (): void => {
    * @api {post} /auth/create
    * @apiName Create
    * @apiGroup Auth
-   * @apiVersion 1.0.0
-   * @apiCurl curl -X POST -H "Content-Type: application/json" -d '{"email":"test@test.com","password":"test","username":"test"}' http://localhost:4000/api/v1/auth/create
    */
   Post(
     serverManager.v1,
