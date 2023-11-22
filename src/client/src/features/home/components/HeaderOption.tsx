@@ -18,6 +18,7 @@ export const HeaderOption = ({
   return (
     <Button
       size="sm"
+      className="shadow-none"
       variant="hidden"
       onClick={() => {
         if (customUrl) {

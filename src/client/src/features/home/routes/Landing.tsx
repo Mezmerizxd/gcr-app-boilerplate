@@ -13,8 +13,9 @@ import {
   BiLogoTailwindCss,
   BiLogoTypescript,
 } from 'react-icons/bi';
-import { SiExpress, SiSocketdotio, SiVercel } from 'react-icons/si';
+import { SiVolkswagen, SiAudi, SiSeat, SiFord, SiVauxhall } from 'react-icons/si';
 import { TeckStackIcon } from '../components/TeckStackIcon';
+import { Carousel } from '../components/Carousel';
 import { HomeLayout } from '../../../components/Layout';
 
 export const Landing = () => {
@@ -24,100 +25,87 @@ export const Landing = () => {
   return (
     <HomeLayout title="Home">
       <h1 className="my-20 xl:text-8xl lg:text-7xl md:text-6xl sm:text-5xl text-5xl font-extrabold text-white-light">
-        {APP_NAME}
+        Welcome to {APP_NAME}
       </h1>
+
+      <Carousel
+        images={[
+          'https://www.topgear.com/sites/default/files/cars-car/carousel/2019/01/_mg_4740-edit.jpg',
+          'https://collectingcars.imgix.net/016111/73.jpg',
+          'https://collectingcars.imgix.net/009971/08-03-2022-JBB-07.jpg',
+        ]}
+      />
+
       <div className="py-20 lg:w-4/6 sm:w-11/12 max-w-6xl m-auto">
-        <h2 className="py-5 px-5 text-4xl font-bold text-white-light">What is Google Cloud Run App Boilerplate?</h2>
+        <h2 className="py-5 px-5 text-4xl font-bold text-white-light">Engine Servicing</h2>
         <p className="px-5 text-lg font-normal text-white-dark">
-          Google Cloud Run App Boilerplate is a simple and easy-to-use template for deploying apps on Google Cloud Run.
-          It consists of a Server and a Client. The Server hosts the Client's static files, and the Server's API Routes
-          are accessible at `/api/v1`.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut auctor, eros eget consequat hendrerit, quam nisl
+          tincidunt nisl, nec aliquet nisi lectus id massa. Nullam auctor, eros eget consequat hendrerit, quam nisl
+          tincidunt nisl, nec aliquet nisi lectus id massa.
         </p>
         <div className="flex justify-center px-5 py-2">
-          <Button
-            className="mx-2"
-            variant="primary"
-            onClick={() => (!user?.profile ? navigate('/auth/login') : navigate('/app'))}
-          >
-            Login
-          </Button>
-          <Button
-            className="mx-2"
-            variant="inverse"
-            onClick={() => (!user?.profile ? navigate('/auth/register') : navigate('/app'))}
-          >
-            Register
+          <Button className="mx-2" variant="primary">
+            Engine Servicing
           </Button>
         </div>
       </div>
 
       <div className="py-20 lg:w-4/6 sm:w-11/12 max-w-6xl m-auto">
-        <h2 className="py-5 px-5 text-4xl font-bold text-white-light">What is Google Cloud Run?</h2>
+        <h2 className="py-5 px-5 text-4xl font-bold text-white-light">Replacements and Upgrades</h2>
         <p className="px-5 text-lg font-normal text-white-dark">
-          Google Cloud Run is a fully managed compute platform that automatically scales your stateless containers.
-          Cloud Run is serverless: it abstracts away all infrastructure management, so you can focus on what matters
-          most — building great applications. It is built on open source Knative, which provides portability across
-          clouds and on-premises.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut auctor, eros eget consequat hendrerit, quam nisl
+          tincidunt nisl, nec aliquet nisi lectus id massa. Nullam auctor, eros eget consequat hendrerit, quam nisl
+          tincidunt nisl, nec aliquet nisi lectus id massa.
         </p>
         <div className="flex justify-center px-5 py-2">
-          <Button
-            className="mx-2"
-            variant="primary"
-            onClick={() => window.open('https://cloud.google.com/run', '_blank')}
-          >
-            Learn More
+          <Button className="mx-2" variant="primary">
+            Replacements & Upgrades
           </Button>
         </div>
       </div>
 
       <div className="py-20 lg:w-4/6 sm:w-10/12 max-w-6xl m-auto">
-        <h2 className="py-5 px-5 text-4xl font-bold text-white-light">Tech Stack</h2>
+        <h2 className="py-5 px-5 text-4xl font-bold text-white-light">Vehicles We Have Most Experience With</h2>
         <div className="grid grid-cols-3 lg:grid-cols-4 gap-4">
-          <TeckStackIcon title="NodeJs" icon={BiLogoNodejs} href="https://nodejs.org/en/docs" />
-          <TeckStackIcon
-            title="PostgreSQL"
-            icon={BiLogoPostgresql}
-            href="https://www.postgresql.org/docs/current/index.html"
-          />
-          <TeckStackIcon title="Express" icon={SiExpress} href="https://expressjs.com/" />
-          <TeckStackIcon title="Socket.io" icon={SiSocketdotio} href="https://socket.io/docs/v4/" />
-          <TeckStackIcon title="TypeScript" icon={BiLogoTypescript} href="https://www.typescriptlang.org/docs/" />
-          <TeckStackIcon title="React" icon={BiLogoReact} href="https://react.dev/learn" />
-          <TeckStackIcon
-            title="Tailwind CSS"
-            icon={BiLogoTailwindCss}
-            href="https://tailwindcss.com/docs/installation"
-          />
-          <TeckStackIcon title="Vercel" icon={SiVercel} href="https://vercel.com/docs" />
-          <TeckStackIcon title="Google Cloud" icon={BiLogoGoogleCloud} href="https://cloud.google.com/?hl=en" />
+          <TeckStackIcon title="Volkswagen" icon={SiVolkswagen} />
+          <TeckStackIcon title="Audi" icon={SiAudi} />
+          <TeckStackIcon title="Seat" icon={SiSeat} />
+          <TeckStackIcon title="Ford" icon={SiFord} />
+          <TeckStackIcon title="Vauxhall" icon={SiVauxhall} />
         </div>
       </div>
 
       <div className="py-20 lg:w-4/6 sm:w-11/12 max-w-6xl m-auto">
-        <h2 className="py-5 px-5 text-4xl font-bold text-white-light">Google Cloud Deployment</h2>
+        <h2 className="py-5 px-5 text-4xl font-bold text-white-light">Suspension, Brakes and Clutchs</h2>
         <p className="px-5 text-lg font-normal text-white-dark">
-          The deployment process involves building the Docker image, pushing it to Google Cloud Registry, and deploying
-          it to Google Cloud Run. Find the deployment script in the project root{' '}
-          <span
-            className="text-accent-light cursor-pointer hover:text-accent-dark duration-150"
-            onClick={() => {
-              window.open('https://github.com/Mezmerizxd/gcr-app-boilerplate/blob/main/deploy.js', '_blank');
-            }}
-          >
-            deploy.js
-          </span>
-          . Before deploying, ensure you configure the .env file according to your requirements. Please be aware that
-          Google Cloud Run incurs costs; you can review the pricing details{' '}
-          <span
-            className="text-accent-light cursor-pointer hover:text-accent-dark duration-150"
-            onClick={() => {
-              window.open('https://cloud.google.com/run/pricing', '_blank');
-            }}
-          >
-            here
-          </span>
-          .
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut auctor, eros eget consequat hendrerit, quam nisl
+          tincidunt nisl, nec aliquet nisi lectus id massa. Nullam auctor, eros eget consequat hendrerit, quam nisl
+          tincidunt nisl, nec aliquet nisi lectus id massa.
         </p>
+      </div>
+
+      <div className="py-20 lg:w-4/6 sm:w-11/12 max-w-6xl m-auto">
+        <h2 className="py-5 px-5 text-4xl font-bold text-white-light">Car Audio</h2>
+        <p className="px-5 text-lg font-normal text-white-dark">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut auctor, eros eget consequat hendrerit, quam nisl
+          tincidunt nisl, nec aliquet nisi lectus id massa. Nullam auctor, eros eget consequat hendrerit, quam nisl
+          tincidunt nisl, nec aliquet nisi lectus id massa.
+        </p>
+      </div>
+
+      <div className="py-20 lg:w-4/6 sm:w-11/12 max-w-6xl m-auto">
+        <h2 className="py-5 px-5 text-4xl font-bold text-white-light">Location</h2>
+        <div className="w-fit m-auto text-left">
+          <p className="px-5 text-lg font-bold text-white-dark">
+            Country: <span className="font-normal">England</span>
+          </p>
+          <p className="px-5 text-lg font-bold text-white-dark">
+            County: <span className="font-normal">Hampshire</span>
+          </p>
+          <p className="px-5 text-lg font-bold text-white-dark">
+            City: <span className="font-normal">Reading</span>
+          </p>
+        </div>
       </div>
     </HomeLayout>
   );

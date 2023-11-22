@@ -15,7 +15,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  background-color: #1a1a28;
+  background-color: #e7e5e4;
 }
 
 code {
@@ -36,6 +36,6 @@ input {
   border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb {
-  background: #ededed;
+  background: #ea580c;
   border-radius: 5px;
 }

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Dialog, Transition } from '@headlessui/react';
-import { Button } from '../Elements';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../libs/auth';
 import { HeaderOption } from '../../features/home/components/HeaderOption';
@@ -20,14 +19,12 @@ const Navigation = ({ onSelect }: { onSelect?: () => void }) => {
       to: '.',
     },
     {
-      name: 'My Website',
-      to: 'https://zvyezda.com',
-      customUrl: true,
+      name: 'Engine Servicing',
+      to: '.',
     },
     {
-      name: 'Radiance Project',
-      to: 'https://radiance-mu.vercel.app/',
-      customUrl: true,
+      name: 'Replacements & Upgrades',
+      to: '.',
     },
   ].filter(Boolean) as NavigationItem[];
 
@@ -66,7 +63,7 @@ const MobileHeader = ({ sidebarOpen, setSidebarOpen }: MobileSidebarProps) => {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <Dialog.Overlay className="fixed inset-0 bg-background-dark bg-opacity-75" />
+          <Dialog.Overlay className="fixed inset-0 bg-black bg-opacity-30" />
         </Transition.Child>
         <Transition.Child
           as={React.Fragment}
@@ -92,34 +89,16 @@ const MobileHeader = ({ sidebarOpen, setSidebarOpen }: MobileSidebarProps) => {
 };
 
 const HomeHeader = () => {
-  const navigate = useNavigate();
-  const { user } = useAuth();
   const [sidebarOpen, setSidebarOpen] = React.useState(false);
 
   return (
     <div>
       <nav className="bg-background-dark border-background-dark px-4 lg:px-6 py-2.5">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-          <a href="https://boilerplate.zvyezda.com" className="items-center hidden sm:inline md:inline xl:inline">
+          <a href="#" className="items-center hidden sm:inline md:inline xl:inline">
             <span className="self-center text-1xl font-semibold whitespace-nowrap">{APP_NAME}</span>
           </a>
-          <div className="flex items-center m-auto sm:m-0 lg:order-2">
-            <Button
-              onClick={() => (!user?.profile ? navigate('/auth/login') : navigate('/app'))}
-              className="mx-2"
-              size="flsm"
-              variant="primary"
-            >
-              Log in
-            </Button>
-            <Button
-              onClick={() => (!user?.profile ? navigate('/auth/register') : navigate('/app'))}
-              className="mx-2"
-              variant="inverse2"
-              size="flsm"
-            >
-              Register
-            </Button>
+          <div className="flex items-center m-0 lg:order-2">
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
               type="button"
