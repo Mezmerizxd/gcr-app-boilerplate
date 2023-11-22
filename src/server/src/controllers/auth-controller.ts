@@ -35,7 +35,12 @@ export const AuthController = (): void => {
       }
 
       const cookie = authManager.sign(login.account);
-      res.cookie('token', cookie);
+      res.cookie('token', cookie, {
+        httpOnly: true,
+        secure: process.env.MODE === 'production',
+        sameSite: 'lax',
+        path: '/',
+      });
 
       return {
         data: {
@@ -80,7 +85,12 @@ export const AuthController = (): void => {
       }
 
       const cookie = authManager.sign(create.account);
-      res.cookie('token', cookie);
+      res.cookie('token', cookie, {
+        httpOnly: true,
+        secure: process.env.MODE === 'production',
+        sameSite: 'lax',
+        path: '/',
+      });
 
       return {
         data: {

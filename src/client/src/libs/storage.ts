@@ -6,9 +6,11 @@ const storage = {
   },
   setToken: (token: string) => {
     window.localStorage.setItem(`${storagePrefix}token`, JSON.stringify(token));
+    document.cookie = `token=${token}; path=/`;
   },
   clearToken: () => {
     window.localStorage.removeItem(`${storagePrefix}token`);
+    document.cookie = `token=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT`;
   },
 };
 

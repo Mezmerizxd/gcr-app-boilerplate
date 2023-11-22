@@ -3,6 +3,7 @@ import { serverManager } from './server-manager';
 import { logger } from '../helpers/logger';
 import jwt, { VerifyErrors } from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
+import { accountManager } from './account-manager';
 
 class AuthManager {
   protected static instance: AuthManager;
@@ -40,7 +41,7 @@ class AuthManager {
     return jwt.sign(user, process.env.JWT_SECRET_KEY);
   }
 
-  verify(token: string): Promise<Account | null> {
+  async verify(token: string): Promise<Account | null> {
     return new Promise((resolve) => {
       jwt.verify(token, process.env.JWT_SECRET_KEY, (err: VerifyErrors, user: Account) => {
         if (err) {
@@ -53,29 +54,28 @@ class AuthManager {
     });
   }
 
-  authenticate(req: Request, res: Response, next: NextFunction) {
+  async authenticate(req: Request, res: Response, next: NextFunction) {
     if (!process.env.JWT_SECRET_KEY) {
       res.status(401).send('No JWT_SECRET_KEY found in env');
     }
-    const token = req.cookies.token;
-    if (!token) {
-      return res.status(401).send('Unauthorized');
+    let token: string = req.cookies.token || req.headers['x-access-token'] || req.headers['authorization'] || '';
+    if (!token || token === '') {
+      return res.status(401).send('No token found');
     }
 
-    this.verify(token).then((user) => {
-      if (!user) {
-        return res.status(403).send('Forbidden');
-      }
-      req.user = user;
-      next();
-    });
-
-    // jwt.verify(token, process.env.JWT_SECRET_KEY, (err: VerifyErrors, user: Account) => {
-    //   if (err) return res.sendStatus(403);
-
-    //   req.user = user;
-    //   next();
-    // });
+    try {
+      jwt.verify(token, process.env.JWT_SECRET_KEY, async (err: VerifyErrors, user: Account) => {
+        if (err) {
+          logger.debug('[AuthManager] Error verifying token:', err);
+          return res.status(401).send('Invalid token');
+        }
+        req.user = user;
+        next();
+      });
+    } catch (error) {
+      logger.error('[AuthManager] Error authenticating:', error);
+      return res.status(403).send('Forbidden');
+    }
   }
 }
 
