@@ -19,7 +19,10 @@
     "jsx": "react",
     "types": ["@types/node", "@types/react", "@types/react-dom"],
     "downlevelIteration": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "paths": {
+      "*.jpg": ["./src/public/images/*"]
+    }
   },
   "include": ["./src/**/*", "./types.d.ts", "../types.d.ts"],
   "exclude": ["node_modules"]

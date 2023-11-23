@@ -96,17 +96,19 @@ const HomeHeader = () => {
       <nav className="bg-background-dark border-background-dark px-4 lg:px-6 py-2.5">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
           <a href="#" className="items-center hidden sm:inline md:inline xl:inline">
-            <span className="self-center text-1xl font-semibold whitespace-nowrap">{APP_NAME}</span>
+            <span className="self-center text-1xl font-semibold whitespace-nowrap hover:text-accent-light">
+              {APP_NAME}
+            </span>
           </a>
           <div className="flex items-center m-0 lg:order-2">
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
               type="button"
-              className="inline-flex items-center p-2 ml-1 text-sm text-white-dark rounded-lg lg:hidden hover:background-dark focus:outline-none focus:ring-2 focus:ring-background-dark"
+              className="inline-flex items-center p-2 ml-1 text-sm text-white-dark hover:text-accent-light rounded-lg lg:hidden hover:background-dark focus:outline-none focus:ring-2 focus:ring-background-dark"
             >
               <span className="sr-only">Open main menu</span>
               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <MenuAlt2Icon className="h-6 w-6 text-white-light" aria-hidden="true" />
+                <MenuAlt2Icon className="h-6 w-6" aria-hidden="true" />
               </svg>
             </button>
           </div>

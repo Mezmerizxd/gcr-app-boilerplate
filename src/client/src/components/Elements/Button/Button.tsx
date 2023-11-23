@@ -7,7 +7,7 @@ const variants = {
   primary: 'bg-accent-dark text-white',
   inverse: 'bg-background-dark text-accent-dark',
   inverse2: 'bg-background text-accent-dark border border-accent-dark/50',
-  hidden: 'bg-transparent text-white-dark',
+  hidden: 'bg-transparent text-white-dark hover:text-accent-light',
   danger: 'bg-red-600 text-white',
 };
 
@@ -48,7 +48,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         type={type}
         className={clsx(
-          'flex justify-center items-center disabled:opacity-70 disabled:cursor-not-allowed rounded-sm shadow-sm font-medium focus:outline-none hover:opacity-80 duration-150',
+          'flex justify-center items-center disabled:opacity-70 disabled:cursor-not-allowed rounded-sm font-medium focus:outline-none hover:opacity-80 duration-150',
           variants[variant],
           sizes[size],
           className,

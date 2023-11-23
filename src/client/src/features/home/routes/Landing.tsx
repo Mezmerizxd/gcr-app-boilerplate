@@ -5,14 +5,10 @@ import { useAuth } from '../../../libs/auth';
 import { APP_NAME } from '../../../constants';
 import { Button } from '../../../components/Elements';
 
-import {
-  BiLogoGoogleCloud,
-  BiLogoNodejs,
-  BiLogoPostgresql,
-  BiLogoReact,
-  BiLogoTailwindCss,
-  BiLogoTypescript,
-} from 'react-icons/bi';
+import ford_escort_cosworth from '../../../public/images/carousel/ford_escort_cosworth.jpg';
+import peugeot_306_gti from '../../../public/images/carousel/peugeot_306_gti.jpg';
+import renault_clio_200_rs from '../../../public/images/carousel/renault_clio_200_rs.jpg';
+import volkswagen_golf_r32 from '../../../public/images/carousel/volkswagen_golf_r32.jpg';
 import { SiVolkswagen, SiAudi, SiSeat, SiFord, SiVauxhall } from 'react-icons/si';
 import { TeckStackIcon } from '../components/TeckStackIcon';
 import { Carousel } from '../components/Carousel';
@@ -25,16 +21,10 @@ export const Landing = () => {
   return (
     <HomeLayout title="Home">
       <h1 className="my-20 xl:text-8xl lg:text-7xl md:text-6xl sm:text-5xl text-5xl font-extrabold text-white-light">
-        Welcome to {APP_NAME}
+        Welcome to <span className="text-accent-light">{APP_NAME}</span>
       </h1>
 
-      <Carousel
-        images={[
-          'https://www.topgear.com/sites/default/files/cars-car/carousel/2019/01/_mg_4740-edit.jpg',
-          'https://collectingcars.imgix.net/016111/73.jpg',
-          'https://collectingcars.imgix.net/009971/08-03-2022-JBB-07.jpg',
-        ]}
-      />
+      <Carousel images={[ford_escort_cosworth, peugeot_306_gti, renault_clio_200_rs, volkswagen_golf_r32]} />
 
       <div className="py-20 lg:w-4/6 sm:w-11/12 max-w-6xl m-auto">
         <h2 className="py-5 px-5 text-4xl font-bold text-white-light">Engine Servicing</h2>
@@ -44,7 +34,7 @@ export const Landing = () => {
           tincidunt nisl, nec aliquet nisi lectus id massa.
         </p>
         <div className="flex justify-center px-5 py-2">
-          <Button className="mx-2" variant="primary">
+          <Button className="mx-2 shadow-sm" variant="primary">
             Engine Servicing
           </Button>
         </div>
@@ -58,7 +48,7 @@ export const Landing = () => {
           tincidunt nisl, nec aliquet nisi lectus id massa.
         </p>
         <div className="flex justify-center px-5 py-2">
-          <Button className="mx-2" variant="primary">
+          <Button className="mx-2 shadow-sm" variant="primary">
             Replacements & Upgrades
           </Button>
         </div>
