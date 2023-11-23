@@ -5,7 +5,7 @@ interface CarouselProps {
   images: string[];
 }
 
-export const Carousel = ({ images }: CarouselProps) => {
+const Carousel = ({ images }: CarouselProps) => {
   return (
     <div className="w-full flex justify-center items-center">
       <div className=" w-11/12 h-[200px] sm:h-96 lg:h-[500px] rounded-lg shadow-md shadow-black/40">
@@ -18,3 +18,5 @@ export const Carousel = ({ images }: CarouselProps) => {
     </div>
   );
 };
+
+export default Carousel;

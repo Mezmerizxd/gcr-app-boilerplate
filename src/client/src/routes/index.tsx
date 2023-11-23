@@ -1,11 +1,12 @@
 import React from 'react';
 import { useRoutes } from 'react-router-dom';
 
-import { Landing } from '../features/home';
+const { Landing } = lazyImport(() => import('../features/home'), 'Landing');
 import { useAuth } from '../libs/auth';
 
 import { protectedRoutes } from './protected';
 import { publicRoutes } from './public';
+import { lazyImport } from '../libs/lazyImport';
 
 export const AppRoutes = () => {
   const auth = useAuth();

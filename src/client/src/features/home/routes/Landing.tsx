@@ -10,9 +10,10 @@ import peugeot_306_gti from '../../../public/images/carousel/peugeot_306_gti.jpg
 import renault_clio_200_rs from '../../../public/images/carousel/renault_clio_200_rs.jpg';
 import volkswagen_golf_r32 from '../../../public/images/carousel/volkswagen_golf_r32.jpg';
 import { SiVolkswagen, SiAudi, SiSeat, SiFord, SiVauxhall } from 'react-icons/si';
-import { TeckStackIcon } from '../components/TeckStackIcon';
-import { Carousel } from '../components/Carousel';
-import { HomeLayout } from '../../../components/Layout';
+
+const HomeLayout = React.lazy(() => import('../../../components/Layout/HomeLayout'));
+const Carousel = React.lazy(() => import('../components/Carousel'));
+const TeckStackIcon = React.lazy(() => import('../components/TeckStackIcon'));
 
 export const Landing = () => {
   const navigate = useNavigate();

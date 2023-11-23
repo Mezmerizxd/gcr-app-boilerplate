@@ -8,7 +8,7 @@ type HomeLayoutProps = {
   title: string;
 };
 
-export const HomeLayout = ({ children, title }: HomeLayoutProps) => {
+const HomeLayout = ({ children, title }: HomeLayoutProps) => {
   return (
     <>
       <Head title={title} />
@@ -22,3 +22,5 @@ export const HomeLayout = ({ children, title }: HomeLayoutProps) => {
     </>
   );
 };
+
+export default HomeLayout;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconType } from 'react-icons/lib';
 
-export const TeckStackIcon = ({ title, icon, href }: { title: string; icon: IconType; href?: string }) => {
+const TeckStackIcon = ({ title, icon, href }: { title: string; icon: IconType; href?: string }) => {
   return (
     <div
       className="flex flex-col group"
@@ -18,3 +18,5 @@ export const TeckStackIcon = ({ title, icon, href }: { title: string; icon: Icon
     </div>
   );
 };
+
+export default TeckStackIcon;
