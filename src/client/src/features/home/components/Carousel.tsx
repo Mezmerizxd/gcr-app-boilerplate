@@ -1,4 +1,4 @@
-import { Carousel as FlowCarousel } from 'flowbite-react';
+import { Carousel as FlowCarousel } from 'flowbite-react/lib/cjs/components/Carousel/Carousel';
 import React from 'react';
 
 interface CarouselProps {
@@ -11,7 +11,13 @@ const Carousel = ({ images }: CarouselProps) => {
       <div className=" w-11/12 h-[200px] sm:h-96 lg:h-[500px] rounded-lg shadow-md shadow-black/40">
         <FlowCarousel slideInterval={5000}>
           {images.map((image, index) => (
-            <img className="rounded-lg w-full h-full object-cover object-center" key={index} src={image} alt="..." />
+            <img
+              className="rounded-lg w-full h-full object-cover object-center"
+              key={index}
+              src={image}
+              alt="..."
+              loading="lazy"
+            />
           ))}
         </FlowCarousel>
       </div>
