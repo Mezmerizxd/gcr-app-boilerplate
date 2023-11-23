@@ -1,7 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router';
-
-import { useAuth } from '../../../libs/auth';
 import { APP_NAME } from '../../../constants';
 import { Button } from '../../../components/Elements';
 
@@ -16,9 +13,6 @@ const Carousel = React.lazy(() => import('../components/Carousel'));
 const TeckStackIcon = React.lazy(() => import('../components/TeckStackIcon'));
 
 export const Landing = () => {
-  const navigate = useNavigate();
-  const { user } = useAuth();
-
   return (
     <HomeLayout title="Home">
       <h1 className="my-20 xl:text-8xl lg:text-7xl md:text-6xl sm:text-5xl text-5xl font-extrabold text-white-light">
