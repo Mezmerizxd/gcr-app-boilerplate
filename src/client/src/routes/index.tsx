@@ -1,31 +1,20 @@
 import React from 'react';
 import { useRoutes } from 'react-router-dom';
-import { lazyImport } from '../libs/lazyImport';
-import { useAuth } from '../libs/auth';
-import { protectedRoutes } from './protected';
 
-const { Landing } = lazyImport(() => import('../features/home'), 'Landing');
-const { AuthRoutes } = lazyImport(() => import('../features/auth'), 'AuthRoutes');
-const { Components } = lazyImport(() => import('../features/home'), 'Components');
+import { Landing } from '../features/home';
+import { useAuth } from '../libs/auth';
+
+import { protectedRoutes } from './protected';
+import { publicRoutes } from './public';
 
 export const AppRoutes = () => {
   const auth = useAuth();
 
-  const commonRoutes = [
-    { path: '/', element: <Landing /> },
-    {
-      path: '/auth/*',
-      element: <AuthRoutes />,
-    },
-    {
-      path: '/components',
-      element: <Components />,
-    },
-  ];
+  const commonRoutes = [{ path: '/', element: <Landing /> }];
 
-  const routes = auth?.user?.profile ? protectedRoutes : null;
+  const routes = auth?.user?.profile ? protectedRoutes : publicRoutes;
 
-  const element = routes ? useRoutes([...routes, ...commonRoutes]) : useRoutes([...commonRoutes]);
+  const element = useRoutes([...routes, ...commonRoutes]);
 
-  return <div className="text-white-light bg-background">{element}</div>;
+  return <div className="bg-background text-white-light">{element}</div>;
 };

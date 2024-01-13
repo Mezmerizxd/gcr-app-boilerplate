@@ -4,6 +4,3 @@ export * from './Dialog';
 export * from './Spinner';
 export * from './Table';
 export * from './Calendar';
-export * from './Accordion';
-export * from './Card';
-export * from './Carousel';

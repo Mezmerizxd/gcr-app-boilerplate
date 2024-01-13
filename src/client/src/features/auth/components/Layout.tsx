@@ -2,7 +2,6 @@ import * as React from 'react';
 
 import { Head } from '../../../components/Head';
 import { Link } from 'react-router-dom';
-import { APP_LOGO_IMAGE_URL } from '../../../constants';
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -16,8 +15,12 @@ export const Layout = ({ children, title }: LayoutProps) => {
       <div className="min-h-screen bg-background flex flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <div className="flex justify-center">
-            <Link className="flex items-center text-white-light" to="/">
-              <img className="h-24 w-auto" src={APP_LOGO_IMAGE_URL} alt="Workflow" />
+            <Link className="flex items-center text-white" to="/">
+              <img
+                className="h-24 w-auto"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1150px-React-icon.svg.png"
+                alt="Workflow"
+              />
             </Link>
           </div>
 

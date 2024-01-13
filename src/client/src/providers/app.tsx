@@ -6,9 +6,9 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import { queryClient } from '../libs/react-query';
-import { Button, Spinner } from '../components/Elements';
-import { Notifications } from '../components/Notifications';
 import { AuthProvider } from '../libs/auth';
+import { Notifications } from '../components/Notifications';
+import { Button, Spinner } from '../components/Elements';
 
 const ErrorFallback = () => {
   return (
@@ -29,7 +29,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
   return (
     <React.Suspense
       fallback={
-        <div className="flex items-center justify-center w-screen h-screen bg-background">
+        <div className="flex items-center justify-center w-screen h-screen">
           <Spinner size="xl" />
         </div>
       }

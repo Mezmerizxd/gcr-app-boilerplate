@@ -4,21 +4,18 @@ type TestingDatabaseAndController = {
   created_at: any;
 };
 
-type Roles = 'ADMIN' | 'USER';
-
 interface Profile {
   id: string;
-  first_name: string;
-  last_name: string;
-  email: string;
-  role: Roles;
+  username: string;
+  role: 'ADMIN' | 'DEVELOPER' | 'USER';
+  avatar_url?: string | null;
 }
 
 interface Account {
   id: string;
-  first_name: string;
-  last_name: string;
-  role: Roles;
+  username: string;
+  role: 'ADMIN' | 'DEVELOPER' | 'USER';
+  avatar_url?: string | null;
   email: string;
   password: string;
   created_at: Date;
@@ -46,7 +43,7 @@ declare namespace Server.Socket {
   };
   type ServerToClient = {
     testSTC: (data: { message: string }) => void;
-    sendMetrics: (data: { metrics: MetricsData }) => any;
+    sendMetrics: (data: { metrics: Server.MetricsData }) => any;
   };
 }
 
@@ -105,8 +102,7 @@ type FnError = {
 };
 
 type CreateAccountData = {
-  first_name: string;
-  last_name: string;
+  username: string;
   email: string;
   password: string;
 };
@@ -115,21 +111,3 @@ type LoginAccountData = {
   email: string;
   password: string;
 };
-
-declare namespace Data {
-  interface Defect {
-    id: string;
-    name: string;
-    category: 'major' | 'minor' | 'dangerous';
-  }
-
-  interface Section {
-    id: string;
-    name: string;
-    description?: string | null;
-    defects?: Defect[] | null;
-    sections?: Section[] | null;
-  }
-
-  type Mot = Section[];
-}

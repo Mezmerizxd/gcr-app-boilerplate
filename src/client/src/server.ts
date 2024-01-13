@@ -1,4 +1,4 @@
-import { DEVELOPMENT_SERVER_URL, DEVELOPMENT_CLIENT_PORT } from './constants';
+import { DEVELOPMENT_SERVER_URL } from './constants';
 import storage from './libs/storage';
 
 class Server {
@@ -156,7 +156,7 @@ class Server {
   private getServerUrl(): string {
     const { port, origin } = window.location;
 
-    if (port === DEVELOPMENT_CLIENT_PORT) {
+    if (port === '8080') {
       return DEVELOPMENT_SERVER_URL;
     } else {
       return `${origin}/api/v1`;

@@ -4,12 +4,11 @@ import * as React from 'react';
 import { Spinner } from '../Spinner';
 
 const variants = {
-  primary: 'font-semibold bg-none text-accent-light border border-accent-light/60',
-  inverse: 'font-semibold bg-accent-dark/20 text-accent-light',
-  inverse2: 'font-semibold bg-accent-dark/20 text-accent-light border border-accent-light/60',
-  hidden: 'font-semibold bg-transparent text-accent-light drop-shadow-2xl',
-  hidden2: 'font-semibold bg-transparent text-white-dark hover:text-accent-light',
-  danger: 'font-semibold bg-red-900 text-white-light',
+  primary: 'bg-accent-dark text-white',
+  inverse: 'bg-background-dark text-accent-dark',
+  inverse2: 'bg-background text-accent-dark border border-accent-dark/50',
+  hidden: 'bg-transparent text-white-dark',
+  danger: 'bg-red-600 text-white',
 };
 
 const sizes = {
@@ -49,7 +48,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         type={type}
         className={clsx(
-          'flex justify-center items-center disabled:opacity-70 disabled:cursor-not-allowed rounded-md font-medium focus:outline-none hover:opacity-80 duration-150',
+          'flex justify-center items-center disabled:opacity-70 disabled:cursor-not-allowed rounded-sm shadow-sm font-medium focus:outline-none hover:opacity-80 duration-150',
           variants[variant],
           sizes[size],
           className,
@@ -58,7 +57,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       >
         {isLoading && <Spinner size="sm" className="text-current" />}
         {!isLoading && startIcon}
-        <span>{props.children}</span> {!isLoading && endIcon}
+        <span className="mx-2">{props.children}</span> {!isLoading && endIcon}
       </button>
     );
   },
