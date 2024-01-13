@@ -1,4 +1,4 @@
-const storagePrefix = 'gcr_app_boilerplate_';
+const storagePrefix = 'mot';
 
 const storage = {
   getToken: () => {

@@ -1,10 +1,10 @@
 import ReactDOM from 'react-dom/client';
 import React from 'react';
 import { AppRoutes } from './routes';
-import { server } from './server';
 import { AppProvider } from './providers/app';
 
 import './index.css';
+import { server } from './server';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 

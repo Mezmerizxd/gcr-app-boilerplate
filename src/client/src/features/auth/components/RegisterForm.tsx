@@ -8,7 +8,8 @@ import { useNotificationStore } from '../../../stores/notifications';
 
 const schema = z.object({
   email: z.string().min(1, 'Required'),
-  username: z.string().min(1, 'Required'),
+  first_name: z.string().min(1, 'Required'),
+  last_name: z.string().min(1, 'Required'),
   password: z.string().min(1, 'Required'),
 });
 
@@ -42,9 +43,15 @@ export const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
             <InputField type="email" label="Email" error={formState.errors['email']} registration={register('email')} />
             <InputField
               type="text"
-              label="Username"
-              error={formState.errors['username']}
-              registration={register('username')}
+              label="First Name"
+              error={formState.errors['first_name']}
+              registration={register('first_name')}
+            />
+            <InputField
+              type="text"
+              label="Last Name"
+              error={formState.errors['last_name']}
+              registration={register('last_name')}
             />
             <InputField
               type="password"

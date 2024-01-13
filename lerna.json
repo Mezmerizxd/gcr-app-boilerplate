@@ -1,5 +1,5 @@
 {
-  "packages": ["src/*"],
+  "packages": ["src/client", "src/server"],
   "npmClient": "yarn",
   "version": "0.0.0"
 }

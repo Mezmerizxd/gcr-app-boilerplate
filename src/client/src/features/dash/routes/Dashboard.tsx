@@ -54,8 +54,8 @@ export const Dashboard = () => {
 
   return (
     <ContentLayout title="Dashboard">
-      <h1 className="text-xl mt-2">
-        Welcome <b>{`${user.profile.username}`}</b>
+      <h1 className="text-xl mt-2 text-white-light">
+        Welcome <b>{`${user.profile.first_name}`}</b>
       </h1>
       <div className="my-2">
         <Button
@@ -68,7 +68,7 @@ export const Dashboard = () => {
           Fetch Metrics
         </Button>
 
-        <div className="my-2 space-y-1">
+        <div className="my-2 space-y-1 text-white-dark">
           <p>Platform: {metrics?.platform || 'N/A'}</p>
           <p>CPU Count: {metrics?.cpu_count || 'N/A'}</p>
           <p>CPU Free: {metrics?.cpu_free || 'N/A'}</p>

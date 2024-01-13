@@ -8,6 +8,7 @@ import { Spinner } from '../components/Elements';
 
 const { Dashboard } = lazyImport(() => import('../features/dash'), 'Dashboard');
 const { Profile } = lazyImport(() => import('../features/dash'), 'Profile');
+const { Testing } = lazyImport(() => import('../features/dash'), 'Testing');
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ export const protectedRoutes = [
     path: '/app',
     element: <App />,
     children: [
+      { path: 'testing', element: <Testing /> },
       { path: 'profile', element: <Profile /> },
       { index: true, element: <Dashboard /> },
       { path: '*', element: <Navigate to="." /> },

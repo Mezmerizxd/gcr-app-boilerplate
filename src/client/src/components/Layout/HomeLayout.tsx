@@ -8,13 +8,13 @@ type HomeLayoutProps = {
   title: string;
 };
 
-export const HomeLayout = ({ children, title }: HomeLayoutProps) => {
+const HomeLayout = ({ children, title }: HomeLayoutProps) => {
   return (
     <>
       <Head title={title} />
       <div className="flex flex-col max-w-full min-h-screen bg-background">
         <HomeHeader />
-        <main className="flex-grow max-w-full mx-auto align-middle text-center justify-center items-center">
+        <main className="flex-grow w-full mx-auto align-middle text-center justify-center items-center">
           {children}
         </main>
         <Footer />
@@ -22,3 +22,5 @@ export const HomeLayout = ({ children, title }: HomeLayoutProps) => {
     </>
   );
 };
+
+export default HomeLayout;

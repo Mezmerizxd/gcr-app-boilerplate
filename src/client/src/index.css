@@ -1,21 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Oxygen&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cantarell&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lalezar&display=swap');
-
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Oxygen', 'Roboto', 'Ubuntu', 'Cantarell', 'Fira Sans';
+  font-family: 'Kanit', sans-serif;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  background-color: #1a1a28;
+  background-color: #e7e5e4;
 }
 
 code {
@@ -31,11 +28,26 @@ input {
   width: 6px;
   height: 5px;
   border-radius: 5px;
+  background: #0c0c0c;
 }
 ::-webkit-scrollbar-track {
   border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb {
-  background: #ededed;
+  background: #2384ff;
+  border-radius: 5px;
+}
+
+#radio_button::-webkit-scrollbar {
+  /* width: 1px; */
+  height: 2px;
+  border-radius: 5px;
+  background: none;
+}
+#radio_button::-webkit-scrollbar-track {
+  border-radius: 5px;
+}
+#radio_button::-webkit-scrollbar-thumb {
+  background: #2384ff;
   border-radius: 5px;
 }

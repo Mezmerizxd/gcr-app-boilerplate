@@ -23,7 +23,6 @@ export const SelectField = (props: SelectFieldProps) => {
   return (
     <FieldWrapper label={label} error={error}>
       <select
-        placeholder={placeholder}
         name="location"
         className={clsx(
           'mt-1 block w-full pl-3 pr-10 py-2 text-base border-background-light bg-background-dark focus:outline-none focus:ring-accent-light focus:border-accent-light sm:text-sm rounded-md',

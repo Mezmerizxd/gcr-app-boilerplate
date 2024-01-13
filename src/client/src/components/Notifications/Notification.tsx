@@ -1,14 +1,17 @@
 import React from 'react';
 import { Transition } from '@headlessui/react';
-import { CheckCircleIcon, ExclamationCircleIcon, XCircleIcon, InformationCircleIcon } from '@heroicons/react/outline';
-import { XIcon } from '@heroicons/react/solid';
+import { MdClose } from 'react-icons/md';
+import { FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
+import { FaCircleInfo } from 'react-icons/fa6';
+import { IoIosCloseCircle } from 'react-icons/io';
+
 import { Fragment, useEffect, useState } from 'react';
 
 const icons = {
-  info: <InformationCircleIcon className="h-6 w-6 text-blue-500" aria-hidden="true" />,
-  success: <CheckCircleIcon className="h-6 w-6 text-green-500" aria-hidden="true" />,
-  warning: <ExclamationCircleIcon className="h-6 w-6 text-yellow-500" aria-hidden="true" />,
-  error: <XCircleIcon className="h-6 w-6 text-red-500" aria-hidden="true" />,
+  info: <FaCircleInfo className="h-6 w-6 text-blue-500" aria-hidden="true" />,
+  success: <FaCheckCircle className="h-6 w-6 text-green-500" aria-hidden="true" />,
+  warning: <FaExclamationCircle className="h-6 w-6 text-yellow-500" aria-hidden="true" />,
+  error: <IoIosCloseCircle className="h-6 w-6 text-red-500" aria-hidden="true" />,
 };
 
 export type NotificationProps = {
@@ -69,7 +72,7 @@ export const Notification = ({ notification: { id, type, title, message }, onDis
                   }}
                 >
                   <span className="sr-only">Close</span>
-                  <XIcon className="h-5 w-5" aria-hidden="true" />
+                  <MdClose className="h-5 w-5" aria-hidden="true" />
                 </button>
               </div>
             </div>

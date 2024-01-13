@@ -5,20 +5,12 @@ import { NavLink, Link } from 'react-router-dom';
 import { clsx } from 'clsx';
 
 import { useAuth } from '../../libs/auth';
-import { APP_NAME } from '../../constants';
-
-type SideNavigationItem = {
-  name: string;
-  to: string;
-  icon: (props: React.SVGProps<SVGSVGElement>) => JSX.Element;
-};
+import { APP_LOGO_IMAGE_URL, APP_NAME, dashboard_navigation } from '../../constants';
 
 const SideNavigation = ({ onSelect }: { onSelect?: () => void }) => {
-  const navigation = [{ name: 'Dashboard', to: '.', icon: HomeIcon }].filter(Boolean) as SideNavigationItem[];
-
   return (
     <>
-      {navigation.map((item, index) => (
+      {dashboard_navigation.map((item, index) => (
         <NavLink
           onClick={() => {
             onSelect && onSelect();
@@ -69,11 +61,12 @@ const UserNavigation = () => {
           <div>
             <Menu.Button className="max-w-xs flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-light">
               <span className="sr-only">Open user menu</span>
-              {user.profile.avatar_url ? (
-                <img className="h-10 w-10 rounded-full" src={user.profile.avatar_url} alt="Workflow" />
-              ) : (
+              {user.profile.first_name && user.profile.last_name && (
                 <div className="flex items-center justify-center h-10 w-10 rounded-full bg-blue-400">
-                  <h1 className="text-white text-lg">{user.profile.username[0]}</h1>
+                  <h1 className="text-white-light text-lg">
+                    {user.profile.first_name[0]}
+                    {user.profile.last_name[0]}
+                  </h1>
                 </div>
               )}
             </Menu.Button>
@@ -100,7 +93,7 @@ const UserNavigation = () => {
                       to={item.to}
                       className={clsx(
                         active ? 'bg-background-light' : '',
-                        'block px-4 py-2 text-sm text-gray-300 hover:text-white duration-150',
+                        'block px-4 py-2 text-sm text-gray-300 hover:text-white-light duration-150',
                       )}
                     >
                       {item.name}
@@ -202,12 +195,8 @@ const Sidebar = () => {
 
 const Logo = () => {
   return (
-    <Link className="flex items-center text-white" to=".">
-      <img
-        className="h-8 w-auto mr-2"
-        src="https://cdn1.iconfinder.com/data/icons/programing-development-8/24/react_logo-512.png"
-        alt="Workflow"
-      />
+    <Link className="flex items-center text-white-light" to=".">
+      <img className="h-8 w-auto mr-2" src={APP_LOGO_IMAGE_URL} alt="mot" />
       <span className="text-xl text-accent-light font-semibold">{APP_NAME}</span>
     </Link>
   );

@@ -31,7 +31,9 @@ export const Profile = () => {
           </div>
           <div className="border-t border-background-light px-4 py-5 sm:p-0">
             <dl className="sm:divide-y sm:divide-background-light">
-              <Entry label="Username" value={user.account.username} />
+              <Entry label="First Name" value={user.account.first_name} />
+              <Entry label="Last Name" value={user.account.last_name} />
+              <Entry label="Email" value={user.account.email} />
               <Entry label="Role" value={user.account.role} />
             </dl>
           </div>

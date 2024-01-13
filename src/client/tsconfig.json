@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ESNext",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -14,12 +14,15 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": true,
+    "isolatedModules": false,
     "noEmit": true,
     "jsx": "react",
-    "types": ["@types/node", "@types/react", "@types/react-dom"],
+    "types": ["@types/node", "@types/react", "@types/react-dom", "vite/client"],
     "downlevelIteration": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "paths": {
+      "*.jpg": ["./src/public/images/*"]
+    }
   },
   "include": ["./src/**/*", "./types.d.ts", "../types.d.ts"],
   "exclude": ["../../node_modules", "node_modules"]

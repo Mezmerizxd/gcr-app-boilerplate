@@ -20,8 +20,8 @@ class AccountManager {
 
   _maxPasswordLength: number = 64;
   _minPasswordLength: number = 1;
-  _maxUsernameLength: number = 32;
-  _minUsernameLength: number = 1;
+  _maxNameLength: number = 32;
+  _minNameLength: number = 1;
 
   constructor() {
     this.prisma = serverManager.prisma;
@@ -97,27 +97,6 @@ class AccountManager {
     };
   }
 
-  async getAccountByUsername(username: string): Promise<{
-    account?: Account;
-    error?: string;
-  }> {
-    const account = await this.prisma.accounts.findUnique({
-      where: {
-        username,
-      },
-    });
-    if (!account) {
-      logger.debug('[AccountManager] getAccountByUsername no account found');
-      return {
-        error: 'No account found',
-      };
-    }
-
-    return {
-      account,
-    };
-  }
-
   async getAccountByEmail(email: string): Promise<{
     account?: Account;
     error?: string;
@@ -180,20 +159,11 @@ class AccountManager {
         error: 'Email already exists',
       };
     }
-    const usernameCheck = await this.prisma.accounts.findUnique({
-      where: {
-        username: data.username,
-      },
-    });
-    if (usernameCheck) {
-      return {
-        error: 'Username already exists',
-      };
-    }
 
     const account = await this.prisma.accounts.create({
       data: {
-        username: data.username,
+        first_name: data.first_name,
+        last_name: data.last_name,
         email: data.email,
         password: crypto.createHash('sha256').update(data.password).digest('hex'),
       },
@@ -212,9 +182,10 @@ class AccountManager {
   convertAccountToProfile(account: Account): Profile {
     return {
       id: account.id,
-      username: account.username,
+      first_name: account.first_name,
+      last_name: account.last_name,
+      email: account.email,
       role: account.role,
-      avatar_url: account.avatar_url,
     };
   }
 
@@ -253,21 +224,32 @@ class AccountManager {
   scanCreateData(data: CreateAccountData): {
     error: string | null;
   } {
-    if (!data.username || !data.email || !data.password) {
+    if (!data.first_name || !data.last_name || !data.email || !data.password) {
       return {
         error: 'Missing data',
       };
     }
 
-    // Username
-    if (data.username.length > this._maxUsernameLength) {
+    // First Name
+    if (data.first_name.length > this._maxNameLength) {
       return {
-        error: 'Username too long',
+        error: 'First name too long',
       };
     }
-    if (data.username.length < this._minUsernameLength) {
+    if (data.first_name.length < this._minNameLength) {
       return {
-        error: 'Username too short',
+        error: 'First name too short',
+      };
+    }
+    // Last Name
+    if (data.last_name.length > this._maxNameLength) {
+      return {
+        error: 'Last name too long',
+      };
+    }
+    if (data.last_name.length < this._minNameLength) {
+      return {
+        error: 'Last name too short',
       };
     }
 
